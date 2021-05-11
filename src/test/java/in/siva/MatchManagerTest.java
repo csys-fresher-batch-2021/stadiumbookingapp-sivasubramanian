@@ -17,7 +17,7 @@ public class MatchManagerTest {
 	@Test
 	public void test() {
 		Set<Matches> Matches = MatchManager.getAvailableMatches();
-		assertEquals(2, Matches.size());
+		assertEquals(3, Matches.size());
 	}
 
 }

@@ -8,19 +8,19 @@ import in.siva.model.Matches;
 
 public class MatchManager {
 
-	private static Set<Matches> matchList = new HashSet<Matches>();
-	static {
-		Matches day1 = new Matches();
-		day1.team1 = "csk";
-		day1.team2 = "rcb";
-		day1.matchDate = LocalDate.parse("2021-05-10");
-		matchList.add(day1);
+	private MatchManager() {
+		//Default Constructor
+	}
 
-		Matches day2 = new Matches();
-		day2.team1 = "srh";
-		day2.team2 = "kkr";
-		day2.matchDate = LocalDate.parse("2021-05-11");
+	private static Set<Matches> matchList = new HashSet<>();
+	static {
+		Matches day1 = new Matches("csk", "rcb", LocalDate.parse("2021-05-11"));
+		Matches day2 = new Matches("srh", "kkr", LocalDate.parse("2021-05-12"));
+		Matches day3 = new Matches("dc", "mi", LocalDate.parse("2021-05-13"));
+		
+		matchList.add(day1);
 		matchList.add(day2);
+		matchList.add(day3);
 	}
 
 	/**
