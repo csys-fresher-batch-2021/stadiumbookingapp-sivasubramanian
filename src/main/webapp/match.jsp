@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="in.siva.model.Matches"%>
+<%@page import="in.siva.model.Match"%>
 <%@page import="java.util.Set"%>
 <%@page import="in.siva.service.MatchManager"%>
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Available Matches</title>
@@ -20,14 +20,13 @@
 					<th>Team 1</th>
 					<th>Team 2</th>
 					<th>Match Date</th>
-					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-				Set<Matches> matchList = MatchManager.getAvailableMatches();
+				Set<Match> matchList = MatchManager.getAvailableMatches();
 				int i = 0;
-				for (Matches match : matchList) {
+				for (Match match : matchList) {
 					i++;
 				%>
 				<tr>
@@ -35,7 +34,6 @@
 					<td><%=match.getTeam1()%></td>
 					<td><%=match.getTeam2()%></td>
 					<td><%=match.getMatchDate()%></td>
-					<td><a href="">Book</a></td>
 				</tr>
 				<%
 				}

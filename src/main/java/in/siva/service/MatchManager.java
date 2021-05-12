@@ -1,10 +1,11 @@
 package in.siva.service;
 
 import java.time.LocalDate;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import in.siva.model.Matches;
+import in.siva.model.Match;
 
 public class MatchManager {
 
@@ -12,11 +13,11 @@ public class MatchManager {
 		// Default Constructor
 	}
 
-	private static Set<Matches> matchList = new HashSet<>();
+	private static final Set<Match> matchList = new HashSet<>();
 	static {
-		Matches day1 = new Matches("csk", "rcb", LocalDate.parse("2021-05-11"));
-		Matches day2 = new Matches("srh", "kkr", LocalDate.parse("2021-05-12"));
-		Matches day3 = new Matches("dc", "mi", LocalDate.parse("2021-05-13"));
+		Match day1 = new Match("csk", "rcb", LocalDate.parse("2021-05-11"));
+		Match day2 = new Match("srh", "kkr", LocalDate.parse("2021-05-12"));
+		Match day3 = new Match("dc", "mi", LocalDate.parse("2021-05-13"));
 
 		matchList.add(day1);
 		matchList.add(day2);
@@ -28,7 +29,7 @@ public class MatchManager {
 	 * 
 	 * @return
 	 */
-	public static Set<Matches> getAvailableMatches() {
+	public static Set<Match> getAvailableMatches() {
 		return matchList;
 	}
 

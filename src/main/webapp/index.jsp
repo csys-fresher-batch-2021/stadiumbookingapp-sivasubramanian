@@ -1,8 +1,6 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.time.LocalDate"%>
 <html>
 <head>
-<title>Stadium Booking App</title>
+<title>Stadium booking app</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
