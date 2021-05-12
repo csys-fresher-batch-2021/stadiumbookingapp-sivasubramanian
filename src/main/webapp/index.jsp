@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Stadium booking app</title>
+<title>Stadium Booking app</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
