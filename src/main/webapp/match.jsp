@@ -20,6 +20,7 @@
 					<th>Team 1</th>
 					<th>Team 2</th>
 					<th>Match Date</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,6 +35,7 @@
 					<td><%=match.getTeam1()%></td>
 					<td><%=match.getTeam2()%></td>
 					<td><%=match.getMatchDate()%></td>
+					<td><a href="login.jsp" class="btn btn-primary">Book</a></td>
 				</tr>
 				<%
 				}

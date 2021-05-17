@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE>
+<html lang="en">
 <head>
 <title>Stadium Booking app</title>
 </head>
