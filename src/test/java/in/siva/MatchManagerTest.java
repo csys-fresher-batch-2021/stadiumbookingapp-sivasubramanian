@@ -6,17 +6,15 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import in.siva.model.Matches;
+import in.siva.model.Match;
+
 import in.siva.service.MatchManager;
 
 public class MatchManagerTest {
 
-	/**
-	 * Test for get available matches
-	 */
 	@Test
 	public void test() {
-		Set<Matches> Matches = MatchManager.getAvailableMatches();
+		Set<Match> Matches = MatchManager.getAvailableMatches();
 		assertEquals(3, Matches.size());
 	}
 
