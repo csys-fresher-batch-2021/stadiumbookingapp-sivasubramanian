@@ -33,6 +33,9 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("LOGGED_IN_USER", userName);
 				String infoMessage = "Login successfull";
 				response.sendRedirect("index.jsp?" + infoMessage);
+			}else {
+				String message = "Not registered";
+				response.sendRedirect("login.jsp?errorMessage=" + message);
 			}
 		} catch (RuntimeException e) {
 			String message = e.getMessage();

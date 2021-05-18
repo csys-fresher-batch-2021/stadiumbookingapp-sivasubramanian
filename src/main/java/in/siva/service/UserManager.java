@@ -1,5 +1,6 @@
 package in.siva.service;
 
+import in.siva.dao.LoginDAO;
 import in.siva.exception.ValidationException;
 import in.siva.validator.UserManagerValidator;
 
@@ -20,10 +21,10 @@ public class UserManager {
 
 		if (UserManagerValidator.isValidLogin(username, password)) {
 
-			return true;
+			return LoginDAO.isExistsUsernameAndPassword(username, password);
 		} else {
 
-			throw new ValidationException("Not Registered");
+			throw new ValidationException("Invalid Login credentials");
 		}
 
 	}

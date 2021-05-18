@@ -4,8 +4,6 @@ import java.util.regex.Matcher;
 
 import java.util.regex.Pattern;
 
-import in.siva.exception.ValidationException;
-
 public class UserValidator {
 
 	private UserValidator() {
@@ -22,7 +20,7 @@ public class UserValidator {
 
 		boolean valid = true;
 		if (name == null || name.trim().equals("") || name.trim().length() < 3) {
-			throw new ValidationException("Invalid Login credentials");
+			valid = false;
 		}
 		return valid;
 	}
@@ -34,14 +32,14 @@ public class UserValidator {
 	 * @return
 	 */
 	public static boolean isValidPassword(String password) {
+		boolean valid = false;
 		String check1 = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%])(?=\\S+$).{8,20}$";
 		Pattern p = Pattern.compile(check1);
 		Matcher m = p.matcher(password);
 		if (m.matches()) {
-			return true;
-		} else {
-			throw new ValidationException("Invalid Login credentials");
+			valid = true;
 		}
+		return valid;
 	}
 
 }
