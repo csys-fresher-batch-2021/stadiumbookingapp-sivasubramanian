@@ -1,7 +1,10 @@
 package in.siva.validator;
 
 import java.util.regex.Matcher;
+
 import java.util.regex.Pattern;
+
+import in.siva.exception.ValidationException;
 
 public class UserValidator {
 
@@ -19,7 +22,7 @@ public class UserValidator {
 
 		boolean valid = true;
 		if (name == null || name.trim().equals("") || name.trim().length() < 3) {
-			throw new RuntimeException("Invalid Login credentials");
+			throw new ValidationException("Invalid Login credentials");
 		}
 		return valid;
 	}
@@ -37,7 +40,7 @@ public class UserValidator {
 		if (m.matches()) {
 			return true;
 		} else {
-			throw new RuntimeException("Invalid Login credentials");
+			throw new ValidationException("Invalid Login credentials");
 		}
 	}
 

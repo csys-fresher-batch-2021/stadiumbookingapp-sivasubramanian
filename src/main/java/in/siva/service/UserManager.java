@@ -1,5 +1,6 @@
 package in.siva.service;
 
+import in.siva.exception.ValidationException;
 import in.siva.validator.UserManagerValidator;
 
 public class UserManager {
@@ -22,7 +23,7 @@ public class UserManager {
 			return true;
 		} else {
 
-			throw new RuntimeException("Not Registered");
+			throw new ValidationException("Not Registered");
 		}
 
 	}
