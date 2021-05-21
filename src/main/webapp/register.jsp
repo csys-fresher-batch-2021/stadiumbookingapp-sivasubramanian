@@ -4,29 +4,33 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Registration</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h3>Login</h3>
+		<h3>Register User</h3>
 		<%
 		String errorMessage = request.getParameter("errorMessage");
 		if (errorMessage != null) {
 			out.println("<font color='red'>" + errorMessage + "</font>");
 		}
 		%>
-		<form action="LoginServlet" method="post">
-			<input type="text" name="username" placeholder="Enter user name"
-				required autofocus> <br /> <br /> <input type="password"
+		<form action="RegisterServlet" method="post">
+			<label for="username">User Name</label> <input type="text"
+				name="username" placeholder="Enter user name" required autofocus />
+			<br /> <label for="password">Password</label> <input type="password"
 				name="password" placeholder="Enter password"
 				pattern="(?=.*\d)(?=.*[a-z])(?=.*[@#$%^&+=])(?=.*[A-Z]).{8,}"
 				title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-				required> <br /> <br />
+				required /> <br /> <label for="mobileNumber">Mobile Number</label>
+			<input type="tel" name="mobileNumber"
+				placeholder="Enter mobile number" pattern="[6789][0-9]{9}"
+				title="Phone number start with 6-9 and remaing 9 digit with 0-9"
+				required /><br />
 			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
 		</form>
-		<br />
-		<a href="register.jsp" class="btn btn-secondary">New Registration</a>
 	</main>
 </body>
 </html>

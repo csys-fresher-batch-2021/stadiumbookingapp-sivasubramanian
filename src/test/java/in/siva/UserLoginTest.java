@@ -44,7 +44,8 @@ public class UserLoginTest {
 		try {
 			UserManager.login("  ", "Sankar@123");
 		} catch (Exception e) {
-			assertEquals("Invalid Login credentials", e.getMessage());
+			System.out.println(e.getMessage());
+			assertEquals("Unable to login", e.getMessage());
 		}
 	}
 }

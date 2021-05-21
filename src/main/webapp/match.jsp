@@ -14,13 +14,14 @@
 	<main class="container-fluid">
 		<h3>Available Matches</h3>
 		<table class="table table-bordered">
+			<caption>Matches</caption>
 			<thead>
 				<tr>
-					<th>S.No</th>
-					<th>Team 1</th>
-					<th>Team 2</th>
-					<th>Match Date</th>
-					<th>Action</th>
+					<th scope="col">S.No</th>
+					<th scope="col">Team 1</th>
+					<th scope="col">Team 2</th>
+					<th scope="col">Match Date</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
