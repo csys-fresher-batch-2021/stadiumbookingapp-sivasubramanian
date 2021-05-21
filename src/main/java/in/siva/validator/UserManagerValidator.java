@@ -1,6 +1,6 @@
 package in.siva.validator;
 
-import in.siva.dao.LoginDAO;
+import in.siva.model.User;
 
 public class UserManagerValidator {
 
@@ -9,11 +9,16 @@ public class UserManagerValidator {
 	}
 
 	public static boolean isValidLogin(String username, String password) {
-		boolean exists = false;
-		if (UserValidator.isValidUserName(username) && UserValidator.isValidPassword(password)) {
-			exists = LoginDAO.isExistsUsernameAndPassword(username, password);
-		}
-		return exists;
+
+		return UserValidator.isValidUserName(username) && UserValidator.isValidPassword(password);
 	}
 
+	public static boolean isValidRegistration(User user1) {
+		String username = user1.getUserName();
+		String password = user1.getPassword();
+		String mobileNo = user1.getMobileNo();
+
+		return UserValidator.isValidUserName(username) && UserValidator.isValidPassword(password)
+				&& UserValidator.isValidMobileNumber(mobileNo);
+	}
 }
