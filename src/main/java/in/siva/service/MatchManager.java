@@ -1,11 +1,13 @@
 package in.siva.service;
 
-import java.time.LocalDate;
+import java.sql.SQLException;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
+import in.siva.dao.MatchDAO;
+import in.siva.exception.DbException;
 import in.siva.model.Match;
+import in.siva.model.Seat;
 
 public class MatchManager {
 
@@ -13,24 +15,29 @@ public class MatchManager {
 		// Default Constructor
 	}
 
-	private static final Set<Match> matchList = new HashSet<>();
-	static {
-		Match day1 = new Match("csk", "rcb", LocalDate.parse("2021-05-11"));
-		Match day2 = new Match("srh", "kkr", LocalDate.parse("2021-05-12"));
-		Match day3 = new Match("dc", "mi", LocalDate.parse("2021-05-13"));
-
-		matchList.add(day1);
-		matchList.add(day2);
-		matchList.add(day3);
-	}
-
 	/**
 	 * This method is used to return the available matches.
 	 * 
 	 * @return
+	 * @throws DbException
 	 */
-	public static Set<Match> getAvailableMatches() {
-		return matchList;
+	public static List<Seat> availability(String matchDate) throws DbException {
+
+		try {
+			MatchDAO matchDAO = new MatchDAO();
+			return matchDAO.getAvailableSeats(matchDate);
+		} catch (DbException | SQLException e) {
+			throw new DbException("Unable to Get seat details");
+		}
+	}
+
+	public static List<Match> getMatches() throws DbException {
+		MatchDAO matchDAO = new MatchDAO();
+		try {
+			return matchDAO.getAllMatches();
+		} catch (DbException e) {
+			throw new DbException("Unable to Get matches");
+		}
 	}
 
 }
