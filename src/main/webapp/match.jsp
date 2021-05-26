@@ -1,48 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="in.siva.model.Match"%>
-<%@page import="java.util.Set"%>
-<%@page import="in.siva.service.MatchManager"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Available Matches</title>
+<title>Matches</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h3>Available Matches</h3>
-		<table class="table table-bordered">
-			<caption>Matches</caption>
-			<thead>
-				<tr>
-					<th scope="col">S.No</th>
-					<th scope="col">Team 1</th>
-					<th scope="col">Team 2</th>
-					<th scope="col">Match Date</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%
-				Set<Match> matchList = MatchManager.getAvailableMatches();
-				int i = 0;
-				for (Match match : matchList) {
-					i++;
-				%>
-				<tr>
-					<td><%=i%></td>
-					<td><%=match.getTeam1()%></td>
-					<td><%=match.getTeam2()%></td>
-					<td><%=match.getMatchDate()%></td>
-					<td><a href="login.jsp" class="btn btn-primary">Book</a></td>
-				</tr>
-				<%
-				}
-				%>
-			</tbody>
-		</table>
+
+
+		<nav class="navbar navbar-light bg-light">
+			<form class="form-inline">
+				<input type="date" class="form-control" onselect="fun()" name="date"
+					value="<%=request.getParameter("date")%>">&nbsp;
+				<button class="btn btn-secondary" type="submit">Search</button>
+			</form>
+		</nav>
+		<%
+			if ("2021-05-21".equals(request.getParameter("date"))) {
+			%>
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src="MI-vs-CSK.jpg" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">CSK vs MI</h5>
+				<p class="card-text">M. A. Chidambaram Stadium</p>
+				<a href="booking.jsp" class="btn btn-primary">Book now</a>
+			</div>
+		</div>
+		<%
+			}
+			%>
+
+		<%
+			if ("2021-05-22".equals(request.getParameter("date"))) {
+			%>
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src="RCB-vs-SRH.jpg" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">SRH vs RCB</h5>
+				<p class="card-text">M. A. Chidambaram Stadium</p>
+				<a href="booking.jsp" class="btn btn-primary">Book now</a>
+			</div>
+		</div>
+		<%
+			}
+			%>
 	</main>
 </body>
+<script>
+	function fun() {
+		var value=document.querySelector("#date").value
+		document.querySelector("#date").value.innerHTML=value;
+	}
+</script>
 </html>

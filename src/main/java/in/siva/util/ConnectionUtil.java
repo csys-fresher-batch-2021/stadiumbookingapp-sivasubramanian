@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import in.siva.exception.DbException;
+
 public class ConnectionUtil {
 
 	private ConnectionUtil() {
@@ -17,19 +19,20 @@ public class ConnectionUtil {
 	 * 
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public static Connection getConnection() throws SQLException {
+	public static Connection getConnection() throws DbException {
 
 		Connection connection = null;
-		String driverClass = "org.postgresql.Driver";
-		String url = "jdbc:postgresql://localhost/stadium_db";
-		String username = "postgres";
-		String password = "Siva@17104061";
+		String driverClass =System.getenv("spring.datasource.driver-class-name");
+		String url =System.getenv("spring.datasource.url");
+		String username =System.getenv("spring.datasource.username");
+		String password =System.getenv("spring.datasource.password");
 		try {
 			Class.forName(driverClass);
 			connection = DriverManager.getConnection(url, username, password);
-		} catch (Exception e) {
-			throw new SQLException(e);
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DbException("Unable to connect");
 		}
 		return connection;
 	}
@@ -40,9 +43,10 @@ public class ConnectionUtil {
 	 * @param conn
 	 * @param stmt
 	 * @param rs
+	 * @throws DbException 
 	 * @throws SQLException
 	 */
-	public static void close(Connection conn, Statement stmt, ResultSet rs) throws SQLException {
+	public static void close(Connection conn, Statement stmt, ResultSet rs) throws DbException  {
 
 		try {
 			if (rs != null) {
@@ -55,7 +59,7 @@ public class ConnectionUtil {
 				conn.close();
 			}
 		} catch (SQLException e) {
-			throw new SQLException(e);
+			throw new DbException("Unable to close");
 		}
 	}
 
@@ -65,8 +69,9 @@ public class ConnectionUtil {
 	 * @param conn
 	 * @param stmt
 	 * @throws SQLException
+	 * @throws DbException 
 	 */
-	public static void close(Connection conn, Statement stmt) throws SQLException {
+	public static void close(Connection conn, Statement stmt) throws SQLException, DbException {
 
 		try {
 			if (stmt != null) {
@@ -76,7 +81,7 @@ public class ConnectionUtil {
 				conn.close();
 			}
 		} catch (SQLException e) {
-			throw new SQLException(e);
+			throw new DbException("Unable to close");
 		}
 	}
 

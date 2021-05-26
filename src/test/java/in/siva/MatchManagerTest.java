@@ -2,6 +2,7 @@ package in.siva;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -14,8 +15,13 @@ public class MatchManagerTest {
 
 	@Test
 	public void test() {
-		Set<Match> Matches = MatchManager.getAvailableMatches();
-		assertEquals(3, Matches.size());
+		try {
+			List<Match> Matches = MatchManager.getMatches();
+			assertEquals(3, Matches.size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
