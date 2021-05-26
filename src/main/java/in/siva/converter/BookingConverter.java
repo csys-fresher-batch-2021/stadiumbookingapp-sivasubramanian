@@ -4,12 +4,15 @@ import in.siva.dto.BookingDTO;
 import in.siva.model.Booking;
 
 public class BookingConverter {
+	private BookingConverter() {
+
+	}
 
 	public static Booking toBooking(BookingDTO dto) {
-		String name=dto.getName();
-		String matchDate=dto.getMatchDate();
-		int noOfSeats=dto.getNoOfSeats();
-		return new Booking(name,matchDate,noOfSeats);
+		String name = dto.getName();
+		String matchDate = dto.getMatchDate();
+		int noOfSeats = dto.getNoOfSeats();
+		return new Booking(name, matchDate, noOfSeats);
 	}
-	
+
 }

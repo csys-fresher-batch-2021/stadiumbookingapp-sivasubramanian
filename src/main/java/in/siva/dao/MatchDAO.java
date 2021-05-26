@@ -60,7 +60,7 @@ public class MatchDAO {
 			pst = connection.prepareStatement(sql);
 			result = pst.executeQuery();
 			while (result.next()) {
-				String team1 = result.getString(1); //TODO: 
+				String team1 = result.getString(1);  
 				String team2 = result.getString(2);
 				Date matchDate = result.getDate(3);
 				Match match = new Match(team1, team2, matchDate);
@@ -74,7 +74,7 @@ public class MatchDAO {
 		return matches;
 	}
 
-	public static int CheckAvailability(String date) throws DbException {
+	public static int checkAvailability(String date) throws DbException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet result = null;

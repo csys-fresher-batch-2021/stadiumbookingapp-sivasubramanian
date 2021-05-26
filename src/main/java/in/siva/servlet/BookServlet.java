@@ -36,23 +36,25 @@ public class BookServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String date =request.getParameter("date");
-		int noOfSeats = Integer.parseInt(request.getParameter("seats"));
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("LOGGED_IN_USER");
-		BookingDTO bookingdto=new BookingDTO(username, date,noOfSeats );
+	    final String page="booking.jsp?message=";
 		try {
+			int noOfSeats = Integer.parseInt(request.getParameter("seats"));
+			BookingDTO bookingdto=new BookingDTO(username, date,noOfSeats );
 			boolean isBooked=BookingManager.bookSeats(bookingdto);
+			
 			if(isBooked) {
 				String message = "Booking successfull";
-				response.sendRedirect("booking.jsp?message="+ message);
+				response.sendRedirect(page+ message);
 			}
 			else {
-				String Message = "Invalid details";
-				response.sendRedirect("booking.jsp?message=" + Message);
+				String message = "Invalid details";
+				response.sendRedirect(page + message);
 			}
 		} catch (DbException |SQLException e) {
 			String message=e.getMessage();
-			response.sendRedirect("booking.jsp?message=" + message);
+			response.sendRedirect(page+ message);
 		}
 		
 	}

@@ -13,7 +13,7 @@ public class BookingValidator {
 	public static boolean isValidBooking(Booking book) throws DbException {
 		boolean valid = false;
 		int noOfSeats = book.getNoOfSeats();
-		int available = MatchDAO.CheckAvailability(book.getMatchDate());
+		int available = MatchDAO.checkAvailability(book.getMatchDate());
 		if (isValid(noOfSeats) && noOfSeats <= available) {
 			valid = true;
 		}

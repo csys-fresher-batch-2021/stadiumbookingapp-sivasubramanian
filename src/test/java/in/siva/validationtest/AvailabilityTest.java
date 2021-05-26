@@ -13,7 +13,7 @@ public class AvailabilityTest {
 	public void test() {
 		
 		try {
-			int a=MatchDAO.CheckAvailability("2021-05-22");
+			int a=MatchDAO.checkAvailability("2021-05-22");
 			System.out.println(a);
 			assertEquals(30,a);
 		} catch (DbException e) {
