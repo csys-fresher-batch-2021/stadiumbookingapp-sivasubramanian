@@ -60,7 +60,7 @@ public class MatchDAO {
 			pst = connection.prepareStatement(sql);
 			result = pst.executeQuery();
 			while (result.next()) {
-				String team1 = result.getString(1);  
+				String team1 = result.getString(1);
 				String team2 = result.getString(2);
 				Date matchDate = result.getDate(3);
 				Match match = new Match(team1, team2, matchDate);
@@ -118,7 +118,7 @@ public class MatchDAO {
 	}
 
 	public void update(Booking book) throws DbException, SQLException {
-		
+
 		Connection connection = null;
 		PreparedStatement pst = null;
 		try {
@@ -135,6 +135,5 @@ public class MatchDAO {
 			ConnectionUtil.close(connection, pst);
 		}
 	}
-	
 
 }

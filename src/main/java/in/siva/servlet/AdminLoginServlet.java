@@ -17,33 +17,34 @@ import in.siva.service.AdminService;
 @WebServlet("/AdminLoginServlet")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminLoginServlet() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AdminLoginServlet() {
+		super();
+	}
 
-		String userName=request.getParameter("userName");
-		String password=request.getParameter("password");
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
 		try {
 			AdminService.checkAdminLogin(userName, password);
 			HttpSession session = request.getSession();
 			session.setAttribute("LOGGED_IN_USER", userName);
-			String infoMessage="Successfully Logged In";
-			
-			response.sendRedirect("addMatch.jsp?infoMessage=" + infoMessage);
-		}
-		catch(Exception e){
-			String errorMessage=e.getMessage();
-			response.sendRedirect("AdminLogin.jsp?errorMessage=" + errorMessage);			
+			String message = "Successfully Logged In";
+
+			response.sendRedirect("addMatch.jsp?message=" + message);
+		} catch (Exception e) {
+			String errorMessage = e.getMessage();
+			response.sendRedirect("AdminLogin.jsp?errorMessage=" + errorMessage);
 		}
 
 	}
