@@ -6698,35 +6698,51 @@ keyframes spinner-border {
 50
 
 
+
+
 %
 {
 opacity
 
 
+
+
 :
+
+
 
 
 1
+
+
 ;
-
-
 -webkit-transform
 
 
+
+
 :
 
 
+
+
 none
+
+
 ;
-
-
 transform
 
 
+
+
 :
 
 
+
+
 none
+
+
 
 
 }
@@ -6740,35 +6756,51 @@ keyframes spinner-grow { 0%{
 50
 
 
+
+
 %
 {
 opacity
 
 
+
+
 :
+
+
 
 
 1
+
+
 ;
-
-
 -webkit-transform
 
 
+
+
 :
 
 
+
+
 none
+
+
 ;
-
-
 transform
 
 
+
+
 :
 
 
+
+
 none
+
+
 
 
 }
