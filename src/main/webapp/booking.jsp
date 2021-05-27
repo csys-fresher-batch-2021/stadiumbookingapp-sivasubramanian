@@ -18,7 +18,7 @@
 			out.println("<font color='green'>" + infoMessage + "</font>");
 		}
 		%>
-		<h3>Booking</h3>
+		<h3>Book Seats</h3>
 		<form action="BookServlet" method="post">
 			<input type="date" name="date" min="<%=today%>" max="2021-06-30"
 				required autofocus> <br /> <br /> <input type="number"
