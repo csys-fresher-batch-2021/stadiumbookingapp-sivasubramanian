@@ -1,7 +1,6 @@
 package in.siva.service;
 
 import java.util.List;
-import in.siva.dao.MatchDao;
 import in.siva.dao.MatchDaoImpl;
 import in.siva.exception.ServiceException;
 import in.siva.model.MatchDetail;
@@ -22,7 +21,7 @@ public class MatchManager {
 	public static List<MatchDetail> getMatches() {
 
 		try {
-			MatchDao matchDao = new MatchDaoImpl();
+			MatchDaoImpl matchDao = new MatchDaoImpl();
 			return matchDao.findAllByOrderByDateAsc();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +39,7 @@ public class MatchManager {
 	public static List<Seats> getAvailableseats(String stadiumName, String matchDate) {
 
 		try {
-			MatchDao matchDao = new MatchDaoImpl();
+			MatchDaoImpl matchDao = new MatchDaoImpl();
 			return matchDao.findByMatchDate(stadiumName, matchDate);
 		} catch (Exception e) {
 			e.printStackTrace();

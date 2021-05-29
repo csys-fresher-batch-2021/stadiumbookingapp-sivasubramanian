@@ -12,9 +12,17 @@ import in.siva.model.MatchDetail;
 import in.siva.model.Seats;
 import in.siva.util.ConnectionUtil;
 
-public class MatchDaoImpl implements MatchDao {
+public class MatchDaoImpl {
 
-	@Override
+	public MatchDaoImpl() {
+		super();
+	}
+	/**
+	 * This method is used for list matches by date order.
+	 * 
+	 * @return
+	 * @throws DbException
+	 */
 	public List<MatchDetail> findAllByOrderByDateAsc() throws DbException {
 		final List<MatchDetail> matches = new ArrayList<>();
 		Connection connection = null;
@@ -54,7 +62,14 @@ public class MatchDaoImpl implements MatchDao {
 
 	}
 
-	@Override
+	/**
+	 * Thismethod is used for check available seats
+	 * 
+	 * @param stadiumName
+	 * @param matchDate
+	 * @return
+	 * @throws DbException
+	 */
 	public List<Seats> findByMatchDate(String stadiumName, String matchDate) throws DbException {
 		final List<Seats> seats = new ArrayList<>();
 		Connection connection = null;

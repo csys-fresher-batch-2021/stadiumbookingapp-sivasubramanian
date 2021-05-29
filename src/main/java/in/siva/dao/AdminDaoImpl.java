@@ -8,14 +8,20 @@ import in.siva.exception.DbException;
 import in.siva.model.MatchDetail;
 import in.siva.util.ConnectionUtil;
 
-public class AdminDaoImpl implements AdminDao {
+public class AdminDaoImpl {
 
 	public AdminDaoImpl() {
 		super();
 
 	}
 
-	@Override
+	/**
+	 * This method is used for store match details
+	 * 
+	 * @param dao
+	 * @throws DbException
+	 * @throws SQLException
+	 */
 	public void save(MatchDetail dao) throws DbException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;

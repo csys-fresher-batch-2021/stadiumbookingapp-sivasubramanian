@@ -1,7 +1,6 @@
 package in.siva.service;
 
 import in.siva.converter.MatchDetailConverter;
-import in.siva.dao.AdminDao;
 import in.siva.dao.AdminDaoImpl;
 import in.siva.dto.MatchDetailsDTO;
 import in.siva.exception.ServiceException;
@@ -40,7 +39,7 @@ public class AdminService {
 		MatchDetail matchDetail = MatchDetailConverter.toMatchDetail(dto);
 		try {
 			MatchDetailValidator.isValidMatchDetail(matchDetail);
-			AdminDao adminDao = new AdminDaoImpl();
+			AdminDaoImpl adminDao = new AdminDaoImpl();
 			adminDao.save(matchDetail);
 		} catch (Exception e) {
 			e.printStackTrace();
