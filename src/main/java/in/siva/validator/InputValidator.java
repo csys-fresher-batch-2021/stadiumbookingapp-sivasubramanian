@@ -1,5 +1,7 @@
 package in.siva.validator;
 
+import in.siva.exception.ValidationException;
+
 public class InputValidator {
 
 	private InputValidator() {
@@ -20,6 +22,14 @@ public class InputValidator {
 			valid = false;
 		}
 		return valid;
+	}
+	
+	public static void isValidNameAndDate(String name,String date) {
+		
+		if(!isValidString(name)||!isValidString(date)) {
+			throw new ValidationException("Input cannot be null");
+		}
+		
 	}
 
 }

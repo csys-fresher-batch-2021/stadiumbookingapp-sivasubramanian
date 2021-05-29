@@ -10,7 +10,21 @@ public class MatchDetail {
 	private String matchDate;
 	private String team1;
 	private String team2;
+	private int totalSeats;
+	private int availableSeats;
+	private int bookedSeats;
+	private int upperSeatPrice;
+	private int lowerSeatPrice;
 	private String image;
+	public int getBookedSeats() {
+		return bookedSeats;
+	}
+
+	public void setBookedSeats(int bookedSeats) {
+		this.bookedSeats = bookedSeats;
+	}
+
+	
 	public String getImage() {
 		return image;
 	}
@@ -18,11 +32,6 @@ public class MatchDetail {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	private int totalSeats;
-	private int availableSeats;
-	private int upperseatPrice;
-	private int lowerSeatPrice;
 
 	public String getStadiumName() {
 		return stadiumName;
@@ -48,8 +57,8 @@ public class MatchDetail {
 		return availableSeats;
 	}
 
-	public int getUpperseatPrice() {
-		return upperseatPrice;
+	public int getUpperSeatPrice() {
+		return upperSeatPrice;
 	}
 
 	public int getLowerSeatPrice() {
@@ -80,8 +89,8 @@ public class MatchDetail {
 		this.availableSeats = availableSeats;
 	}
 
-	public void setUpperseatPrice(int upperseatPrice) {
-		this.upperseatPrice = upperseatPrice;
+	public void setUpperSeatPrice(int upperseatPrice) {
+		this.upperSeatPrice = upperseatPrice;
 	}
 
 	public void setLowerSeatPrice(int lowerSeatPrice) {

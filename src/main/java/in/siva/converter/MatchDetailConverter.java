@@ -18,7 +18,7 @@ public class MatchDetailConverter {
 		matchDetail.setTeam2(dto.getTeam2());
 		matchDetail.setAvailableSeats(dto.getAvailableSeats());
 		matchDetail.setTotalSeats(dto.getTotalSeats());
-		matchDetail.setUpperseatPrice(dto.getUpperseatPrice());
+		matchDetail.setUpperSeatPrice(dto.getUpperSeatPrice());
 		matchDetail.setLowerSeatPrice(dto.getLowerSeatPrice());
 		matchDetail.setImage(dto.getImage());
 		return matchDetail;

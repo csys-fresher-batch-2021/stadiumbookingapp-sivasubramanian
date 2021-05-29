@@ -51,7 +51,7 @@ public class AddMatchServlet extends HttpServlet {
 			matchDetailDto.setTeam2(team2);
 			matchDetailDto.setAvailableSeats(availableSeats);
 			matchDetailDto.setTotalSeats(totalSeats);
-			matchDetailDto.setUpperseatPrice(upperSeatPrice);
+			matchDetailDto.setUpperSeatPrice(upperSeatPrice);
 			matchDetailDto.setLowerSeatPrice(lowerSeatPrice);
 			matchDetailDto.setImage(image);
 			AdminService.addMatchDetails(matchDetailDto);

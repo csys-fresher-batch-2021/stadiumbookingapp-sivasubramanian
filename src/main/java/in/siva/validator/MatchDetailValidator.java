@@ -13,7 +13,7 @@ public class MatchDetailValidator {
 
 		int availableSeats = matchDetail.getAvailableSeats();
 		int totalseats = matchDetail.getTotalSeats();
-		int upperSeatPrice = matchDetail.getUpperseatPrice();
+		int upperSeatPrice = matchDetail.getUpperSeatPrice();
 		int lowerSeatprice = matchDetail.getLowerSeatPrice();
 		String team1 = matchDetail.getTeam1();
 		String team2 = matchDetail.getTeam2();

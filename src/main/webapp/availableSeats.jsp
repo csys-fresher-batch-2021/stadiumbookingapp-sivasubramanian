@@ -1,23 +1,33 @@
+<%@page import="in.siva.service.MatchManager"%>
+<%@page import="in.siva.service.AdminService"%>
+<%@page import="in.siva.model.Seats"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="in.siva.model.Seat"%>
-<%@page import="in.siva.dto.MatchDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
-<%@page import="in.siva.service.MatchManager"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Available Matches</title>
+<title>Available Seats</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<nav class="navbar navbar-light bg-light">
 			<form class="form-inline">
-				<input type="date" class="form-control" onselect="fun()" name="date"
-					value="<%=request.getParameter("date")%>">&nbsp;
+				<input type="date" class="form-control" name="date"
+					value="<%=request.getParameter("date")%>" required>&nbsp; <select
+					name="stadiumName" required>
+					<option disabled selected>-------------------- select
+						stadium --------------------</option>
+					<option>Eden Gardens,Kolkata</option>
+					<option>M. A. Chidambaram Stadium,Chennai</option>
+					<option>Wankhede Stadium,Mumbai</option>
+					<option>M. Chinnaswamy Stadium,Bangalore</option>
+					<option>Rajiv Gandhi International Cricket
+						Stadium,Dehradun</option>
+				</select>&nbsp;
 				<button class="btn btn-secondary" type="submit">Search</button>
 			</form>
 		</nav>
@@ -27,27 +37,29 @@
 			<thead>
 				<tr>
 					<th scope="col">S.No</th>
-					<th scope="col">Match Date</th>
 					<th scope="col">Available Seats</th>
 					<th scope="col">Booked Seats</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-				List<Seat> matchList = MatchManager.availability(request.getParameter("date"));
-				int i = 0;
-				for (Seat detail : matchList) {
-					i++;
+				if (request.getParameter("date") != null && request.getParameter("stadiumName") != null) {
+					List<Seats> seatList = MatchManager.getAvailableseats(request.getParameter("stadiumName"),
+					request.getParameter("date"));
+					int i = 0;
+					for (Seats detail : seatList) {
+						i++;
 				%>
 				<tr>
 					<td><%=i%></td>
-					<td><%=detail.getMatchDate()%></td>
 					<td><%=detail.getAvailableSeats()%></td>
 					<td><%=detail.getBookedSeats()%></td>
 				</tr>
 				<%
 				}
+				}
 				%>
+
 			</tbody>
 		</table>
 	</main>

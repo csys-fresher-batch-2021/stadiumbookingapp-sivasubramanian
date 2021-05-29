@@ -1,13 +1,11 @@
 package in.siva.service;
 
-import java.sql.SQLException;
-
 import java.util.List;
-
-import in.siva.dao.MatchDAO;
-import in.siva.exception.DbException;
-import in.siva.model.Match;
-import in.siva.model.Seat;
+import in.siva.dao.MatchDao;
+import in.siva.dao.MatchDaoImpl;
+import in.siva.exception.ServiceException;
+import in.siva.model.MatchDetail;
+import in.siva.model.Seats;
 
 public class MatchManager {
 
@@ -16,28 +14,39 @@ public class MatchManager {
 	}
 
 	/**
-	 * This method is used to return the available matches.
+	 * This method is used for get matches
 	 * 
+	 * @param dto
 	 * @return
-	 * @throws DbException
 	 */
-	public static List<Seat> availability(String matchDate) throws DbException {
+	public static List<MatchDetail> getMatches() {
 
 		try {
-			MatchDAO matchDAO = new MatchDAO();
-			return matchDAO.getAvailableSeats(matchDate);
-		} catch (DbException | SQLException e) {
-			throw new DbException("Unable to Get seat details");
+			MatchDao matchDao = new MatchDaoImpl();
+			return matchDao.findAllByOrderByDateAsc();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServiceException("Unable to get matches");
 		}
+
 	}
 
-	public static List<Match> getMatches() throws DbException {
-		MatchDAO matchDAO = new MatchDAO();
+	/**
+	 * This method is used for get available seats
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	public static List<Seats> getAvailableseats(String stadiumName, String matchDate) {
+
 		try {
-			return matchDAO.getAllMatches();
-		} catch (DbException e) {
-			throw new DbException("Unable to Get matches");
+			MatchDao matchDao = new MatchDaoImpl();
+			return matchDao.findByMatchDate(stadiumName, matchDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServiceException("Unable to get matches");
 		}
+
 	}
 
 }
