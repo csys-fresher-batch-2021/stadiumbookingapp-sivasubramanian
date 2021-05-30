@@ -6700,9 +6700,13 @@ keyframes spinner-border {
 
 
 
+
+
 %
 {
 opacity
+
+
 
 
 
@@ -6712,7 +6716,11 @@ opacity
 
 
 
+
+
 1
+
+
 
 
 ;
@@ -6721,12 +6729,18 @@ opacity
 
 
 
+
+
 :
 
 
 
 
+
+
 none
+
+
 
 
 ;
@@ -6735,12 +6749,18 @@ transform
 
 
 
+
+
 :
 
 
 
 
+
+
 none
+
+
 
 
 
@@ -6758,9 +6778,13 @@ keyframes spinner-grow { 0%{
 
 
 
+
+
 %
 {
 opacity
+
+
 
 
 
@@ -6770,7 +6794,11 @@ opacity
 
 
 
+
+
 1
+
+
 
 
 ;
@@ -6779,12 +6807,18 @@ opacity
 
 
 
+
+
 :
 
 
 
 
+
+
 none
+
+
 
 
 ;
@@ -6793,12 +6827,18 @@ transform
 
 
 
+
+
 :
 
 
 
 
+
+
 none
+
+
 
 
 

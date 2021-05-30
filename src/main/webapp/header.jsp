@@ -17,7 +17,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 %>
 <header>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<a class="navbar-brand" href="index.jsp">Stadium Booking App</a>
+		<a class="navbar-brand" href="index1.jsp">Stadium Booking App</a>
 		<button class="navbar-toggler d-lg-none" type="button"
 			data-toggle="collapse" data-target="#collapsibleNavId"
 			aria-controls="collapsibleNavId" aria-expanded="false"
@@ -26,8 +26,9 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavId">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link"
-					href="index.jsp">Home <span class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link" href="home.jsp">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="availableSeats.jsp">Check Availability</a></li>
 			</ul>
@@ -39,7 +40,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 					class="nav-link dropdown-toggle" href="#" id="dropdownId"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
 					<div class="dropdown-menu" aria-labelledby="dropdownId">
-						<a class="dropdown-item" href="AdminLogin.jsp">Admin Login</a> <a
+						<a class="dropdown-item" href="adminLogin1.jsp">Admin Login</a> <a
 							class="dropdown-item" href="login.jsp">User Login</a>
 					</div>
 				<li class="nav-item"><a class="nav-link" href="register.jsp">Register</a></li>

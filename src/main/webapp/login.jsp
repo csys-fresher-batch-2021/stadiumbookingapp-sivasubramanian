@@ -33,7 +33,7 @@
 		<%
 		} else {
 		%>
-		<a href="match.jsp" class="btn btn-secondary">Book Tickes</a>
+		<a href="#" class="btn btn-secondary">Book Tickes</a>
 		<%
 		}
 		%>

@@ -9,7 +9,7 @@ public class MatchDetailsDTO {
 	private String image;
 	private int totalSeats;
 	private int availableSeats;
-	private int upperseatPrice;
+	private int upperSeatPrice;
 	private int lowerSeatPrice;
 
 
@@ -46,8 +46,8 @@ public class MatchDetailsDTO {
 		return availableSeats;
 	}
 
-	public int getUpperseatPrice() {
-		return upperseatPrice;
+	public int getUpperSeatPrice() {
+		return upperSeatPrice;
 	}
 
 	public int getLowerSeatPrice() {
@@ -78,8 +78,8 @@ public class MatchDetailsDTO {
 		this.availableSeats = availableSeats;
 	}
 
-	public void setUpperseatPrice(int upperseatPrice) {
-		this.upperseatPrice = upperseatPrice;
+	public void setUpperSeatPrice(int upperseatPrice) {
+		this.upperSeatPrice = upperseatPrice;
 	}
 
 	public void setLowerSeatPrice(int lowerSeatPrice) {
