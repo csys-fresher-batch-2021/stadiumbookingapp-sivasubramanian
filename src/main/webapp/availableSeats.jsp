@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="in.siva.service.MatchManager"%>
 <%@page import="in.siva.service.AdminService"%>
 <%@page import="in.siva.model.Seats"%>
@@ -11,13 +12,17 @@
 <meta charset="ISO-8859-1">
 <title>Available Seats</title>
 </head>
+<%
+String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
+%>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<nav class="navbar navbar-light bg-light">
 			<form class="form-inline">
 				<input type="date" class="form-control" name="date"
-					value="<%=request.getParameter("date")%>" required>&nbsp; <select
+					value="<%=request.getParameter("date")%>"
+					min="<%=LocalDate.now()%>" required>&nbsp; <select
 					name="stadiumName" required>
 					<option disabled selected>-------------------- select
 						stadium --------------------</option>
@@ -62,6 +67,13 @@
 
 			</tbody>
 		</table>
+		<%
+		if (loggedInUsername != null) {
+		%>
+		<a href="matches.jsp">List Matches</a>
+		<%
+		}
+		%>
 	</main>
 </body>
 </html>

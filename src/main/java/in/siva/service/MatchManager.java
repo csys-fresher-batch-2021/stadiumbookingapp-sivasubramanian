@@ -47,5 +47,23 @@ public class MatchManager {
 		}
 
 	}
+	
+	/**
+	 * This method is used for get matches after currebt date
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	public static List<MatchDetail> getNextMatches() {
+
+		try {
+			MatchDaoImpl matchDao = new MatchDaoImpl();
+			return matchDao.findByAfterCurrentDate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServiceException("Unable to get matches");
+		}
+
+	}
 
 }
