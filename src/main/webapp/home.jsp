@@ -28,13 +28,14 @@
 			<!-- The slideshow -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="s2.jpg" alt="Los Angeles" width="1100" height="500">
+					<img src="images/s2.jpg" alt="Los Angeles" width="1100"
+						height="500">
 				</div>
 				<div class="carousel-item">
-					<img src="s3.jpg" alt="Chicago" width="1100" height="500">
+					<img src="images/s3.jpg" alt="Chicago" width="1100" height="500">
 				</div>
 				<div class="carousel-item">
-					<img src="s1.jpg" alt="New York" width="1100" height="500">
+					<img src="images/s1.jpg" alt="New York" width="1100" height="500">
 				</div>
 			</div>
 

@@ -30,7 +30,7 @@ public class UserDAO {
 		ResultSet rs = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select name,password from users where name = ? and password =?";
+			String sql = "select user_name,password from users where user_name = ? and password =?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, username);
 			pst.setString(2, password);
@@ -60,7 +60,7 @@ public class UserDAO {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String insertQuery = "insert into users (name,password,mobile_number) values (?,?,?)";
+			String insertQuery = "insert into users (user_name,password,mobile_number) values (?,?,?)";
 			pst = connection.prepareStatement(insertQuery);
 			pst.setString(1, user1.getUserName());
 			pst.setString(2, user1.getPassword());

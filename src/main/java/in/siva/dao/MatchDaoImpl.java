@@ -96,5 +96,50 @@ public class MatchDaoImpl {
 		return seats;
 
 	}
+	
+	/**
+	 * This method is used for list matches after current date.
+	 * 
+	 * @return
+	 * @throws DbException
+	 */
+	public List<MatchDetail> findByAfterCurrentDate() throws DbException {
+		final List<MatchDetail> matches = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement pst = null;
+		ResultSet result = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "select stadium_name,match_date,team1,team2,upper_seat_price,lower_seat_price,image from match_details where match_date >= CURRENT_DATE order by match_date asc";
+			pst = connection.prepareStatement(sql);
+			result = pst.executeQuery();
+			while (result.next()) {
+				String stadiumName = result.getString(1);
+				String matchDate = result.getDate(2).toString();
+				String team1 = result.getString(3);
+				String team2 = result.getString(4);
+				int upperPrice=result.getInt(5);
+				int lowerPrice=result.getInt(6);
+				String image=result.getString(7);
+				MatchDetail match = new MatchDetail();
+
+				match.setStadiumName(stadiumName);
+				match.setMatchDate(matchDate);
+				match.setTeam1(team1);
+				match.setTeam2(team2);
+				match.setUpperSeatPrice(upperPrice);
+				match.setLowerSeatPrice(lowerPrice);
+				match.setImage(image);
+
+				matches.add(match);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(connection, pst, result);
+		}
+		return matches;
+
+	}
 
 }

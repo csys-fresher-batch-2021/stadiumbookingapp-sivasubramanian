@@ -15,6 +15,9 @@
 			out.println("<font color='red'>" + errorMessage + "</font>");
 		}
 		%>
+		<p>
+			Username : admin<br /> password : admin@123
+		</p>
 		<form action="AdminLoginServlet" method="post">
 			<br> <input type="text" name="userName" id="userName"
 				autocomplete="off" required placeholder="Enter User Name" autofocus><br />

@@ -44,7 +44,7 @@ public class AdminLoginServlet extends HttpServlet {
 			response.sendRedirect("addMatch.jsp?message=" + message);
 		} catch (Exception e) {
 			String errorMessage = e.getMessage();
-			response.sendRedirect("AdminLogin.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect("adminLogin1.jsp?errorMessage=" + errorMessage);
 		}
 
 	}

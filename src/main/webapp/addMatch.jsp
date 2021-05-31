@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -30,20 +31,25 @@
 				<option>M. Chinnaswamy Stadium,Bangalore</option>
 				<option>Rajiv Gandhi International Cricket Stadium,Dehradun</option>
 			</select> <br /> <br /> <label for="dateTime">Set Date and time</label> <br />
-			<input type="date" id="datetime" name="dateTime" required> <br />
-			<br /> <input type="text" name="team1" placeholder="Enter team1"
-				required> <br /> <br /> <input type="text" name="team2"
+			<input type="date" id="datetime" name="dateTime"
+				min="<%=LocalDate.now()%>" required> <br /> <br /> <input
+				type="text" name="team1" placeholder="Enter team1"
+				title="eg.csk,mi,srh.." required> <br /> <br /> <input
+				type="text" name="team2" title="eg.csk,mi,srh.."
 				placeholder="Enter team2" required> <br /> <br /> <input
-				type="number" name="totalSeats" placeholder="Enter total seats"
-				id="totalSeats" onchange="setAvailableSeats()" required> <br />
-			<br /> <input type="number" name="availableSeats"
-				id="availableSeats" placeholder="Enter available seats" required
-				readonly> <br /> <br /> <input type="number"
-				name="upperSeatPrice" placeholder="Enter upper seat price" required>
-			<br /> <br /> <input type="number" name="lowerSeatPrice"
+				type="number" min="100" name="totalSeats"
+				placeholder="Enter total seats" id="totalSeats"
+				onchange="setAvailableSeats()" required> <br /> <br /> <input
+				type="number" name="availableSeats" id="availableSeats"
+				placeholder="Enter available seats" required readonly> <br />
+			<br /> <input type="number" name="upperSeatPrice" min="800"
+				placeholder="Enter upper seat price" required> <br /> <br />
+			<input type="number" name="lowerSeatPrice"
 				placeholder="Enter lower seat price" required> <br /> <br />
-			<input type="text" name="image" placeholder="Enter image url"
-				required> <br /> <br />
+			<input type="text" min="1000" name="image"
+				placeholder="Enter image url" value="IPLlogo.jpg" readonly
+				title="Enter team1-team2.jpg eg.csk-mi.jpg" required> <br />
+			<br />
 			<button type="submit" class="btn btn-primary">Submit</button>
 			&nbsp;
 			<button type="reset" class="btn btn-danger">Reset</button>
