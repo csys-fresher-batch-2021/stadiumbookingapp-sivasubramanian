@@ -35,7 +35,7 @@ public class UserDAO {
 			pst.setString(1, username);
 			pst.setString(2, password);
 			rs = pst.executeQuery();
-			if (rs != null) {
+			if (rs.next()) {
 				loggedIn = true;
 			}
 		} catch (Exception e) {
