@@ -18,6 +18,7 @@ public class MatchDaoImpl {
 	public MatchDaoImpl() {
 		super();
 	}
+
 	/**
 	 * This method is used for list matches by date order.
 	 * 
@@ -97,7 +98,7 @@ public class MatchDaoImpl {
 		return seats;
 
 	}
-	
+
 	/**
 	 * This method is used for list matches after current date.
 	 * 
@@ -115,14 +116,14 @@ public class MatchDaoImpl {
 			pst = connection.prepareStatement(sql);
 			result = pst.executeQuery();
 			while (result.next()) {
-				int matchId=result.getInt(1);
+				int matchId = result.getInt(1);
 				String stadiumName = result.getString(2);
 				String matchDate = result.getDate(3).toString();
 				String team1 = result.getString(4);
 				String team2 = result.getString(5);
-				int upperPrice=result.getInt(6);
-				int lowerPrice=result.getInt(7);
-				String image=result.getString(8);
+				int upperPrice = result.getInt(6);
+				int lowerPrice = result.getInt(7);
+				String image = result.getString(8);
 				MatchDetail match = new MatchDetail();
 
 				match.setMatchId(matchId);
@@ -143,13 +144,20 @@ public class MatchDaoImpl {
 		}
 		return matches;
 	}
-	
+
+	/**
+	 * This method is used for get available and booked seats
+	 * 
+	 * @param matchDate
+	 * @return
+	 * @throws DbException
+	 */
 	public int findAvailableSeats(String matchDate) throws DbException {
-	
+
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet result = null;
-		int availableSeats=0;
+		int availableSeats = 0;
 		try {
 			connection = ConnectionUtil.getConnection();
 			String sql = "select available_seats from match_details where match_date=?";
@@ -157,17 +165,23 @@ public class MatchDaoImpl {
 			pst.setDate(1, java.sql.Date.valueOf(matchDate));
 			result = pst.executeQuery();
 			while (result.next()) {
-				availableSeats=result.getInt(1);
+				availableSeats = result.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DbException("Unable to find");
 		} finally {
 			ConnectionUtil.close(connection, pst, result);
 		}
 		return availableSeats;
 	}
-	
-	
+
+	/**
+	 * This method is used for get available seats
+	 * 
+	 * @param dao
+	 * @throws DbException
+	 * @throws SQLException
+	 */
 	public void update(Booking dao) throws DbException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -175,19 +189,16 @@ public class MatchDaoImpl {
 			connection = ConnectionUtil.getConnection();
 			String updateQuery = "update match_details set available_seats=available_seats-?,booked_seats=booked_seats+? where id=?";
 			pst = connection.prepareStatement(updateQuery);
-			pst.setInt(1,dao.getNoOfSeats() );
+			pst.setInt(1, dao.getNoOfSeats());
 			pst.setInt(2, dao.getNoOfSeats());
 			pst.setInt(3, dao.getMatchId());
 			pst.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			throw new DbException("Unable to update");
 		} finally {
 			ConnectionUtil.close(connection, pst);
 		}
-		
-		
+
 	}
-	
 
 }

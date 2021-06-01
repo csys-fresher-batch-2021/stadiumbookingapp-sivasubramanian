@@ -14,10 +14,16 @@ public class BookingDaoImpl {
 	public BookingDaoImpl() {
 		super();
 	}
-	
 
+	/**
+	 * This method is used for book seats
+	 * 
+	 * @param dao
+	 * @throws DbException
+	 * @throws SQLException
+	 */
 	public void save(Booking dao) throws DbException, SQLException {
-		
+
 		Connection connection = null;
 		PreparedStatement pst = null;
 		try {
@@ -29,9 +35,9 @@ public class BookingDaoImpl {
 			pst.setString(3, dao.getSeatType());
 			pst.setInt(4, dao.getNoOfSeats());
 			pst.setInt(5, dao.getTotalAmount());
-			
+
 			pst.executeUpdate();
-			
+
 		} catch (Exception e) {
 			throw new DbException("Unable to register");
 		} finally {
@@ -40,4 +46,3 @@ public class BookingDaoImpl {
 	}
 
 }
-
