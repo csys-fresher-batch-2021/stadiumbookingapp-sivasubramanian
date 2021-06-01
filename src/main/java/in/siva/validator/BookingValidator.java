@@ -7,7 +7,7 @@ import in.siva.model.Booking;
 
 public class BookingValidator {
 
-	public BookingValidator() {
+	private BookingValidator() {
 
 		// Default constructor
 	}
