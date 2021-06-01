@@ -36,7 +36,9 @@ public class UserDAO {
 			pst.setString(2, password);
 			rs = pst.executeQuery();
 			if (rs.next()) {
+
 				userId=rs.getInt(1);
+
 			}
 		} catch (Exception e) {
 			throw new DbException("Unable to login");
