@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.siva.exception.DbException;
+import in.siva.model.Booking;
 import in.siva.model.MatchDetail;
 import in.siva.model.Seats;
 import in.siva.util.ConnectionUtil;
@@ -17,6 +18,7 @@ public class MatchDaoImpl {
 	public MatchDaoImpl() {
 		super();
 	}
+
 	/**
 	 * This method is used for list matches by date order.
 	 * 
@@ -96,7 +98,7 @@ public class MatchDaoImpl {
 		return seats;
 
 	}
-	
+
 	/**
 	 * This method is used for list matches after current date.
 	 * 
@@ -110,19 +112,21 @@ public class MatchDaoImpl {
 		ResultSet result = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select stadium_name,match_date,team1,team2,upper_seat_price,lower_seat_price,image from match_details where match_date >= CURRENT_DATE order by match_date asc";
+			String sql = "select id,stadium_name,match_date,team1,team2,upper_seat_price,lower_seat_price,image from match_details where match_date >= CURRENT_DATE order by match_date asc";
 			pst = connection.prepareStatement(sql);
 			result = pst.executeQuery();
 			while (result.next()) {
-				String stadiumName = result.getString(1);
-				String matchDate = result.getDate(2).toString();
-				String team1 = result.getString(3);
-				String team2 = result.getString(4);
-				int upperPrice=result.getInt(5);
-				int lowerPrice=result.getInt(6);
-				String image=result.getString(7);
+				int matchId = result.getInt(1);
+				String stadiumName = result.getString(2);
+				String matchDate = result.getDate(3).toString();
+				String team1 = result.getString(4);
+				String team2 = result.getString(5);
+				int upperPrice = result.getInt(6);
+				int lowerPrice = result.getInt(7);
+				String image = result.getString(8);
 				MatchDetail match = new MatchDetail();
 
+				match.setMatchId(matchId);
 				match.setStadiumName(stadiumName);
 				match.setMatchDate(matchDate);
 				match.setTeam1(team1);
@@ -139,6 +143,61 @@ public class MatchDaoImpl {
 			ConnectionUtil.close(connection, pst, result);
 		}
 		return matches;
+	}
+
+	/**
+	 * This method is used for get available and booked seats
+	 * 
+	 * @param matchDate
+	 * @return
+	 * @throws DbException
+	 */
+	public int findAvailableSeats(String matchDate) throws DbException {
+
+		Connection connection = null;
+		PreparedStatement pst = null;
+		ResultSet result = null;
+		int availableSeats = 0;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "select available_seats from match_details where match_date=?";
+			pst = connection.prepareStatement(sql);
+			pst.setDate(1, java.sql.Date.valueOf(matchDate));
+			result = pst.executeQuery();
+			while (result.next()) {
+				availableSeats = result.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new DbException("Unable to find");
+		} finally {
+			ConnectionUtil.close(connection, pst, result);
+		}
+		return availableSeats;
+	}
+
+	/**
+	 * This method is used for get available seats
+	 * 
+	 * @param dao
+	 * @throws DbException
+	 * @throws SQLException
+	 */
+	public void update(Booking dao) throws DbException, SQLException {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String updateQuery = "update match_details set available_seats=available_seats-?,booked_seats=booked_seats+? where id=?";
+			pst = connection.prepareStatement(updateQuery);
+			pst.setInt(1, dao.getNoOfSeats());
+			pst.setInt(2, dao.getNoOfSeats());
+			pst.setInt(3, dao.getMatchId());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException("Unable to update");
+		} finally {
+			ConnectionUtil.close(connection, pst);
+		}
 
 	}
 

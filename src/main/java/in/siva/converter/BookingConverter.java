@@ -9,10 +9,14 @@ public class BookingConverter {
 	}
 
 	public static Booking toBooking(BookingDTO dto) {
-		String name = dto.getName();
-		String matchDate = dto.getMatchDate();
-		int noOfSeats = dto.getNoOfSeats();
-		return new Booking(name, matchDate, noOfSeats);
+		Booking book=new Booking();
+		book.setUserId(dto.getUserId());
+		book.setMatchId(dto.getMatchId());
+		book.setNoOfSeats(dto.getNoOfSeats());
+		book.setSeatType(dto.getSeatType());
+		book.setTotalAmount(dto.getTotalAmount());
+		book.setMatchDate(dto.getMatchDate());
+		return book;
 	}
 
 }

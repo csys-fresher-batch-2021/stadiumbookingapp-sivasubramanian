@@ -22,28 +22,30 @@ public class UserDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean isExistsUsernameAndPassword(String username, String password)
+	public static int isExistsUsernameAndPassword(String username, String password)
 			throws DbException, SQLException {
-		boolean loggedIn = false;
+		int userId = 0;
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select user_name,password from users where user_name = ? and password =?";
+			String sql = "select * from users where user_name = ? and password =?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, username);
 			pst.setString(2, password);
 			rs = pst.executeQuery();
 			if (rs.next()) {
-				loggedIn = true;
+
+				userId=rs.getInt(1);
+
 			}
 		} catch (Exception e) {
 			throw new DbException("Unable to login");
 		} finally {
 			ConnectionUtil.close(connection, pst, rs);
 		}
-		return loggedIn;
+		return userId;
 
 	}
 
