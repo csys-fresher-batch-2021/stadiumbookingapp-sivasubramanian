@@ -30,10 +30,11 @@ public class LoginServlet extends HttpServlet {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		try {
-			boolean valid = UserManager.login(userName, password);
-			if (valid) {
+			int userId = UserManager.login(userName, password);
+			if (userId!=0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("LOGGED_IN_USER", userName);
+				session.setAttribute("LOGGED_IN_USER_ID", userId);
 				String infoMessage = "Login successfull";
 				response.sendRedirect("matches.jsp?" + infoMessage);
 			} else {

@@ -7,18 +7,22 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Matches</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<%
 		List<MatchDetail> matchList = MatchManager.getNextMatches();
-		for (MatchDetail detail : matchList) {
+		
 		%>
 
 		<div class="container">
 			<div class="row">
+				<%
+		for (MatchDetail detail : matchList) {
+		%>
+
 				<div class="col-lg-6 mb-4">
 					<div class="card" style="width: 20rem">
 						<img class="card-img-top" src="images/<%=detail.getImage()%>"
@@ -28,18 +32,21 @@
 							<p class="card-text"><%=detail.getMatchDate()%><br /> <br /><%=detail.getStadiumName()%>
 							</p>
 							<a
-								href="booking.jsp?date=<%=detail.getMatchDate()%>&up=<%=detail.getUpperSeatPrice() %>"
+								href="booking.jsp?id=<%=detail.getMatchId()%>&date=<%=detail.getMatchDate()%>&up=<%=detail.getUpperSeatPrice()%>
+								&lp=<%=detail.getLowerSeatPrice()%>"
 								class="btn btn-primary"> Book Now </a>
 						</div>
 					</div>
 
 				</div>
-			</div>
-		</div>
 
-		<%
+
+
+				<%
 		}
 		%>
+			</div>
+		</div>
 
 	</main>
 

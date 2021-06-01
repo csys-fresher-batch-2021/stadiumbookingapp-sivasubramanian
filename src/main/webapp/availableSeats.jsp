@@ -41,7 +41,6 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 			<caption>Matches</caption>
 			<thead>
 				<tr>
-					<th scope="col">S.No</th>
 					<th scope="col">Available Seats</th>
 					<th scope="col">Booked Seats</th>
 				</tr>
@@ -51,14 +50,11 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				if (request.getParameter("date") != null && request.getParameter("stadiumName") != null) {
 					List<Seats> seatList = MatchManager.getAvailableseats(request.getParameter("stadiumName"),
 					request.getParameter("date"));
-					int i = 0;
 					for (Seats detail : seatList) {
-						i++;
 				%>
 				<tr>
-					<td><%=i%></td>
-					<td><%=detail.getAvailableSeats()%></td>
-					<td><%=detail.getBookedSeats()%></td>
+					<td class="table-success"><%=detail.getAvailableSeats()%></td>
+					<td class="table-danger"><%=detail.getBookedSeats()%></td>
 				</tr>
 				<%
 				}

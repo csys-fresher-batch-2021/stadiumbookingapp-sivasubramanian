@@ -24,7 +24,7 @@ public class UserManager {
 	 * @return
 	 * @throws DbException
 	 */
-	public static boolean login(String username, String password) throws DbException, ValidationException {
+	public static int login(String username, String password) throws DbException, ValidationException {
 
 		try {
 			if (UserManagerValidator.isValidLogin(username, password)) {
