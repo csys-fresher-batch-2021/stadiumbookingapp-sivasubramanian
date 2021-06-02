@@ -43,13 +43,13 @@ public class MatchManager {
 			return matchDao.findByMatchDate(stadiumName, matchDate);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ServiceException("Unable to get matches");
+			throw new ServiceException("Unable to get availability");
 		}
 
 	}
 	
 	/**
-	 * This method is used for get matches after currebt date
+	 * This method is used for get matches after current date
 	 * 
 	 * @param dto
 	 * @return
@@ -61,7 +61,7 @@ public class MatchManager {
 			return matchDao.findByAfterCurrentDate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ServiceException("Unable to get matches");
+			throw new ServiceException("Unable to display");
 		}
 
 	}

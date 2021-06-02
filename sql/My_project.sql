@@ -55,6 +55,7 @@ values ('Eden Gardens,Kolkata','2021-06-12','rcb','srh',1500,1500,2500,3800,'rcb
 /*Booking table*/
 CREATE TABLE booking_details
 (
+	id serial primary key,
     user_id integer,
     match_id integer,
     seat_type character varying(50) NOT NULL,
@@ -67,3 +68,4 @@ CREATE TABLE booking_details
 	CHECK (total_amount>0),
 	CHECK (no_of_seats>0)
 );
+

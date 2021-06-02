@@ -50,18 +50,18 @@ public class UserManager {
 	 * @throws SQLException
 	 */
 	public static boolean register(UserDTO dto) throws DbException, SQLException {
-		boolean register = false;
+		boolean isRegistered = false;
 		User user = UserConverter.toUser(dto);
 		try {
 			if (UserManagerValidator.isValidRegistration(user)) {
-				UserDAO.registerUser(user);
-				register = true;
+				UserDAO.save(user);
+				isRegistered = true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DbException("Unable to register");
 		}
-		return register;
+		return isRegistered;
 	}
 
 }

@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Stadium Booking </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -41,7 +41,7 @@ $(document).ready(function(){
 	    });
 	  });
 	});
-function getAllTasks(){
+function getAllMatches(){
 	let url = "DisplayMatchServlet";
 	fetch(url).then(response=> response.json()).then(res=>{
 		let matches = res;
@@ -55,7 +55,7 @@ function getAllTasks(){
 	})
 	
 }
-getAllTasks();
+getAllMatches();
 
 </script>
 	</main>

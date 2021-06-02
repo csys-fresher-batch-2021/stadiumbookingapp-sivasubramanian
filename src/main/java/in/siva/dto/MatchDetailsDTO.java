@@ -12,7 +12,6 @@ public class MatchDetailsDTO {
 	private int upperSeatPrice;
 	private int lowerSeatPrice;
 
-
 	public String getImage() {
 		return image;
 	}
@@ -20,7 +19,6 @@ public class MatchDetailsDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 
 	public String getStadiumName() {
 		return stadiumName;

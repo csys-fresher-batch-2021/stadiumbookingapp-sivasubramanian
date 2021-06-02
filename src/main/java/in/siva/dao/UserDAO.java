@@ -22,8 +22,7 @@ public class UserDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public static int isExistsUsernameAndPassword(String username, String password)
-			throws DbException, SQLException {
+	public static int isExistsUsernameAndPassword(String username, String password) throws DbException, SQLException {
 		int userId = 0;
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -37,7 +36,7 @@ public class UserDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 
-				userId=rs.getInt(1);
+				userId = rs.getInt(1);
 
 			}
 		} catch (Exception e) {
@@ -56,7 +55,7 @@ public class UserDAO {
 	 * @throws DbException
 	 * @throws SQLException
 	 */
-	public static void registerUser(User user1) throws DbException, SQLException {
+	public static void save(User user1) throws DbException, SQLException {
 
 		Connection connection = null;
 		PreparedStatement pst = null;
