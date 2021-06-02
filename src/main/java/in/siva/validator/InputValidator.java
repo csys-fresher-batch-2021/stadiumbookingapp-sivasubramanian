@@ -23,13 +23,13 @@ public class InputValidator {
 		}
 		return valid;
 	}
-	
-	public static void isValidNameAndDate(String name,String date) {
-		
-		if(!isValidString(name)||!isValidString(date)) {
+
+	public static void isValidNameAndDate(String name, String date) {
+
+		if (!isValidString(name) || !isValidString(date)) {
 			throw new ValidationException("Input cannot be null");
 		}
-		
+
 	}
 
 }

@@ -20,7 +20,7 @@ public class MatchDaoImpl {
 	}
 
 	/**
-	 * This method is used for list matches by date order.
+	 * This method is used for list matches which is sorted by date.
 	 * 
 	 * @return
 	 * @throws DbException
@@ -65,7 +65,7 @@ public class MatchDaoImpl {
 	}
 
 	/**
-	 * Thismethod is used for check available seats
+	 * This method is used for get available and booked seats
 	 * 
 	 * @param stadiumName
 	 * @param matchDate
@@ -100,7 +100,7 @@ public class MatchDaoImpl {
 	}
 
 	/**
-	 * This method is used for list matches after current date.
+	 * This method is used for list matches which is after current date.
 	 * 
 	 * @return
 	 * @throws DbException
@@ -146,7 +146,7 @@ public class MatchDaoImpl {
 	}
 
 	/**
-	 * This method is used for get available and booked seats
+	 * This method returns avilable seats.
 	 * 
 	 * @param matchDate
 	 * @return
@@ -176,13 +176,13 @@ public class MatchDaoImpl {
 	}
 
 	/**
-	 * This method is used for get available seats
+	 * This method is used for update available and booked seats while booking.
 	 * 
 	 * @param dao
 	 * @throws DbException
 	 * @throws SQLException
 	 */
-	public void update(Booking dao) throws DbException, SQLException {
+	public void updateBook(Booking dao) throws DbException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		try {
@@ -195,6 +195,33 @@ public class MatchDaoImpl {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			throw new DbException("Unable to update");
+		} finally {
+			ConnectionUtil.close(connection, pst);
+		}
+
+	}
+
+	/**
+	 * This method is used for update available and booked seats while cancelling.
+	 * 
+	 * @param matchId
+	 * @param noOfTickets
+	 * @throws DbException
+	 * @throws SQLException
+	 */
+	public void updateCancell(int matchId, int noOfTickets) throws DbException, SQLException {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String updateQuery = "update match_details set available_seats=available_seats+?,booked_seats=booked_seats-? where id=?";
+			pst = connection.prepareStatement(updateQuery);
+			pst.setInt(1, noOfTickets);
+			pst.setInt(2, noOfTickets);
+			pst.setInt(3, matchId);
+			pst.executeUpdate();
+		} catch (Exception e) {
+			throw new DbException("Unable to update seats");
 		} finally {
 			ConnectionUtil.close(connection, pst);
 		}

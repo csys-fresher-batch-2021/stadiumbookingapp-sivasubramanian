@@ -49,7 +49,7 @@ public class BookingServlet extends HttpServlet {
 			book.setMatchDate(matchDate);
 			BookingManager.bookSeat(book);
 			String infoMessage = "Successfully booked";
-			response.sendRedirect("booking.jsp?infoMessage=" + infoMessage);
+			response.sendRedirect("myBookings.jsp?infoMessage=" + infoMessage+"&matchId="+matchId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			String errorMessage = e.getMessage();

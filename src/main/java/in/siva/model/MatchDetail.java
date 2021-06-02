@@ -5,8 +5,7 @@ public class MatchDetail {
 	public MatchDetail() {
 		super();
 	}
-	
-	
+
 	private int matchId;
 	private String stadiumName;
 	private String matchDate;
@@ -18,7 +17,7 @@ public class MatchDetail {
 	private int upperSeatPrice;
 	private int lowerSeatPrice;
 	private String image;
-	
+
 	public int getMatchId() {
 		return matchId;
 	}
@@ -35,7 +34,6 @@ public class MatchDetail {
 		this.bookedSeats = bookedSeats;
 	}
 
-	
 	public String getImage() {
 		return image;
 	}

@@ -49,15 +49,15 @@
 		function calculateTotal() {
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
-			const UpperPrice = urlParams.get('up');
-			const LowerPrice = urlParams.get('lp');
+			const upperPrice = urlParams.get('up');
+			const lowerPrice = urlParams.get('lp');
 			var type = document.querySelector("#type").value;
 			var numberOfSeats = document.querySelector("#no").value;
 			if (type == 'upper' && numberOfSeats > 0) {
-				var price = UpperPrice * numberOfSeats;
+				var price = upperPrice * numberOfSeats;
 			}
 			if (type == 'lower' && numberOfSeats > 0) {
-				var price = LowerPrice * numberOfSeats;
+				var price = lowerPrice * numberOfSeats;
 			}
 			document.querySelector("#total").value = price;
 		}

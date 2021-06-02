@@ -28,4 +28,12 @@ public class BookingValidator {
 		}
 	}
 
+	public static void isvalidcancelling(int matchId, int bookingId, int noOfTickets) {
+
+		if (!InputValidator.isValidNumber(noOfTickets) && !InputValidator.isValidNumber(bookingId)
+				&& InputValidator.isValidNumber(matchId)) {
+			throw new ValidationException("Invalid input");
+		}
+	}
+
 }

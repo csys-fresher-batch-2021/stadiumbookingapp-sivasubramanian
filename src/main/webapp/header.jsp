@@ -29,7 +29,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				<li class="nav-item active"><a class="nav-link" href="home.jsp">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item active"><a class="nav-link"
 					href="availableSeats.jsp">Check Availability</a></li>
 			</ul>
 			<%
@@ -49,6 +49,8 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				if (loggedInUsername != null && !loggedInUsername.equalsIgnoreCase("ADMIN")) {
 				%>
 				<li class="nav-item"><a class="nav-link" href="#">Welcome <%=loggedInUsername%></a></li>
+				<li class="nav-item"><a class="nav-link" href="myBookings.jsp">My
+						Bookings</a></li>
 				<li class="nav-item"><a class="nav-link" href="LogoutServlet">Logout</a>
 				</li>
 				<%
