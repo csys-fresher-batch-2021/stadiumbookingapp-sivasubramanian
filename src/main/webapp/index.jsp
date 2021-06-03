@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Stadium Booking </title>
+<title>Stadium Booking</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -49,7 +49,8 @@ function getAllMatches(){
 		let i=0;
 		for(let match of matches){
 			details +="<tr><td>"+(++i)+"</td><td>"+match.stadiumName +"</td><td>"+match.matchDate+" </td><td>"+match.team1+
-			"</td><td>"+match.team2 +"</td><td>"+match.totalSeats+"</td><td>Rs."+match.upperSeatPrice +"</td><td>Rs."+match.lowerSeatPrice +"</td><td><a href='login.jsp' class='btn btn-primary'>"+"Book"+"</a></td></tr>";
+			"</td><td>"+match.team2 +"</td><td>"+match.totalSeats+"</td><td>Rs."+match.upperSeatPrice +"</td><td>Rs."+match.lowerSeatPrice 
+			+"</td><td><a href='login.jsp' class='btn btn-primary'>"+"Book"+"</a></td></tr>";
 		}
 		document.querySelector("#match_table").innerHTML= details;
 	})

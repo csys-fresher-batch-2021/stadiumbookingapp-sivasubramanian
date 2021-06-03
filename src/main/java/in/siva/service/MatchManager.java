@@ -24,7 +24,6 @@ public class MatchManager {
 			MatchDaoImpl matchDao = new MatchDaoImpl();
 			return matchDao.findAllByOrderByDateAsc();
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ServiceException("Unable to get matches");
 		}
 
@@ -42,7 +41,6 @@ public class MatchManager {
 			MatchDaoImpl matchDao = new MatchDaoImpl();
 			return matchDao.findByMatchDate(stadiumName, matchDate);
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ServiceException("Unable to get availability");
 		}
 
@@ -60,7 +58,6 @@ public class MatchManager {
 			MatchDaoImpl matchDao = new MatchDaoImpl();
 			return matchDao.findByAfterCurrentDate();
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ServiceException("Unable to display");
 		}
 

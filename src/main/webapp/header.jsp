@@ -59,6 +59,8 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				<%
 				if (loggedInUsername != null && loggedInUsername.equalsIgnoreCase("ADMIN")) {
 				%>
+				<li class="nav-item"><a class="nav-link" href="allBookings.jsp">All
+						Bookings</a></li>
 				<li class="nav-item"><a class="nav-link" href="LogoutServlet">logout</a>
 				</li>
 			</ul>

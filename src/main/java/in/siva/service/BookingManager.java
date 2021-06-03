@@ -38,7 +38,6 @@ public class BookingManager {
 			bookingDao.save(bookSeat);
 			matchdao.updateBook(bookSeat);
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ServiceException("Invalid credentials");
 		}
 	}
@@ -55,7 +54,7 @@ public class BookingManager {
 		try {
 			myBookingList = bookingDao.findMyBookings(userId);
 		} catch (DbException e) {
-			e.printStackTrace();
+			throw new ServiceException(e.getMessage());
 		}
 		return myBookingList;
 	}
@@ -77,7 +76,7 @@ public class BookingManager {
 			matchdao.updateCancell(matchId, noOfTickets);
 
 		} catch (DbException | SQLException e) {
-			e.printStackTrace();
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
