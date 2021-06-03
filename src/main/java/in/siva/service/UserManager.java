@@ -35,7 +35,6 @@ public class UserManager {
 				throw new ValidationException("Invalid Login credentials");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DbException("Unable to login");
 		}
 
@@ -58,7 +57,6 @@ public class UserManager {
 				isRegistered = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DbException("Unable to register");
 		}
 		return isRegistered;

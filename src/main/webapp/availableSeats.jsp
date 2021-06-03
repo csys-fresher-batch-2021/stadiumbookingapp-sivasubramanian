@@ -63,6 +63,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 
 			</tbody>
 		</table>
+
 		<%
 		if (loggedInUsername != null) {
 		%>

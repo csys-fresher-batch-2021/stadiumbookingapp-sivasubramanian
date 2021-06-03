@@ -21,9 +21,11 @@ public class MatchDetailValidator {
 		if (!InputValidator.isValidNumber(lowerSeatprice) || !InputValidator.isValidNumber(upperSeatPrice)
 				|| !InputValidator.isValidNumber(totalseats)
 				|| !InputValidator.isValidNumber(availableSeats) && !InputValidator.isValidString(image)
-				|| !InputValidator.isValidString(team2) || !InputValidator.isValidString(team1)
-				|| team1.equals(team2)) {
+				|| !InputValidator.isValidString(team2) || !InputValidator.isValidString(team1)) {
 			throw new ValidationException("Invalid");
+		}
+		if(team1.equals(team2)) {
+			throw new ValidationException("Team name should be unique");
 		}
 	}
 

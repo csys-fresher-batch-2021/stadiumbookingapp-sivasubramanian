@@ -1,9 +1,15 @@
 package in.siva.service;
 
+import java.util.List;
+
+import javax.sql.rowset.serial.SerialException;
+
 import in.siva.converter.MatchDetailConverter;
 import in.siva.dao.AdminDaoImpl;
 import in.siva.dto.MatchDetailsDTO;
 import in.siva.exception.ServiceException;
+import in.siva.model.AllBookings;
+import in.siva.model.Level;
 import in.siva.model.MatchDetail;
 import in.siva.validator.AdminValidator;
 import in.siva.validator.MatchDetailValidator;
@@ -42,9 +48,42 @@ public class AdminService {
 			AdminDaoImpl adminDao = new AdminDaoImpl();
 			adminDao.save(matchDetail);
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new ServiceException("Invalid Match details");
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
+
+	/**
+	 * This method is used to get all booked user details.
+	 * 
+	 * @return
+	 * @throws SerialException
+	 */
+	public static List<AllBookings> getAllBookings() throws ServiceException {
+
+		AdminDaoImpl allBookings = new AdminDaoImpl();
+		try {
+			return allBookings.findAllBookings();
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * This method is used for get available levels.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static List<Level> getPercentage(String name) {
+
+		AdminDaoImpl percentage = new AdminDaoImpl();
+		try {
+			return percentage.findPercentage(name);
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
 }
