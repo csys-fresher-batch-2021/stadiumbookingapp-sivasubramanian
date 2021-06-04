@@ -15,7 +15,6 @@ public class MyBookings {
 	private String bookingDate;
 	private int totalAmount;
 	private String status;
-	@SuppressWarnings("unused")
 	private boolean cancellable; // derivable column
 
 	public int getMatchId() {
@@ -35,11 +34,11 @@ public class MyBookings {
 	}
 
 	public boolean isCancellable() {
-		return LocalDate.parse(matchDate).isAfter(LocalDate.now());
+		return cancellable;
 	}
 
-	public void setCancellable(boolean cancellable) {
-		this.cancellable = cancellable;
+	public void setCancellable(String matchDate) {
+		this.cancellable =  LocalDate.parse(matchDate).isAfter(LocalDate.now());
 	}
 
 	public String getStatus() {

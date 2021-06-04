@@ -1,5 +1,7 @@
 package in.siva.model;
 
+import java.time.LocalDate;
+
 public class MatchDetail {
 
 	public MatchDetail() {
@@ -17,24 +19,8 @@ public class MatchDetail {
 	private int upperSeatPrice;
 	private int lowerSeatPrice;
 	private String image;
-	private String issue;
-	private String reason;
+	private boolean bookable;
 
-	public String getIssue() {
-		return issue;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public void setIssue(String issue) {
-		this.issue = issue;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
 
 	public int getMatchId() {
 		return matchId;
@@ -122,5 +108,13 @@ public class MatchDetail {
 
 	public void setLowerSeatPrice(int lowerSeatPrice) {
 		this.lowerSeatPrice = lowerSeatPrice;
+	}
+
+	public boolean isBookable() {
+		return bookable;
+	}
+
+	public void setBookable(String matchDate) {
+		this.bookable = LocalDate.parse(matchDate).isAfter(LocalDate.now());
 	}
 }

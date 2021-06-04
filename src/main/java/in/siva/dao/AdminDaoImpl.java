@@ -106,6 +106,13 @@ public class AdminDaoImpl {
 
 	}
 
+	/**
+	 * This method is used for get available levels in terms of percentage
+	 * 
+	 * @param name
+	 * @return
+	 * @throws DbException
+	 */
 	public List<Level> findPercentage(String name) throws DbException {
 		final List<Level> percentage = new ArrayList<>();
 		Connection connection = null;
@@ -137,5 +144,5 @@ public class AdminDaoImpl {
 		return percentage;
 
 	}
-	
+
 }

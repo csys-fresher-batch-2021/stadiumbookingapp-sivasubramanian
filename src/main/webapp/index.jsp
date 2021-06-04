@@ -50,7 +50,18 @@ function getAllMatches(){
 		for(let match of matches){
 			details +="<tr><td>"+(++i)+"</td><td>"+match.stadiumName +"</td><td>"+match.matchDate+" </td><td>"+match.team1+
 			"</td><td>"+match.team2 +"</td><td>"+match.totalSeats+"</td><td>Rs."+match.upperSeatPrice +"</td><td>Rs."+match.lowerSeatPrice 
-			+"</td><td><a href='login.jsp' class='btn btn-primary'>"+"Book"+"</a></td></tr>";
+			+"</td>";
+			console.log(match);
+			if(match.bookable){
+				details+="<td><a href='login.jsp' class='btn btn-primary'>"+"Book"+"</a></td>";
+				}
+			else{
+					details+="<td><button class='btn btn-primary' disabled>"+"Book"+"</button></td>";
+				};
+				
+				details+="</tr>";
+		
+		
 		}
 		document.querySelector("#match_table").innerHTML= details;
 	})

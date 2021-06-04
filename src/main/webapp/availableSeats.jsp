@@ -22,7 +22,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 			<form class="form-inline">
 				<input type="date" class="form-control" name="date"
 					value="<%=request.getParameter("date")%>"
-					min="<%=LocalDate.now()%>" required>&nbsp; <select
+					min="<%=LocalDate.now()%>" required autofocus>&nbsp; <select
 					name="stadiumName" required>
 					<option disabled selected>-------------------- select
 						stadium --------------------</option>
@@ -36,7 +36,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				<button class="btn btn-secondary" type="submit">Search</button>
 			</form>
 		</nav>
-		<h3>Available Matches</h3>
+		<h3>Available Seats</h3>
 		<table class="table table-bordered">
 			<caption>Matches</caption>
 			<thead>

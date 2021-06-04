@@ -4,12 +4,14 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>All Bookings</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<br /> <br />
+		<br />
+		<h3>All Bookings</h3>
+		<br />
 		<table class="table table-bordered">
 			<caption>Matches</caption>
 

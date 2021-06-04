@@ -22,7 +22,7 @@
 				out.println("<font color='green'>" + infoMessage + "</font>");
 			}
 			%>
-			<br /> <select class="selectpicker" name="stadiumName">
+			<br /> <select class="selectpicker" name="stadiumName" autofocus>
 				<option disabled selected>-------------------- select
 					stadium --------------------</option>
 				<option>Eden Gardens,Kolkata</option>

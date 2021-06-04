@@ -52,6 +52,7 @@ public class MatchDaoImpl {
 				match.setTotalSeats(totalSeats);
 				match.setUpperSeatPrice(upperPrice);
 				match.setLowerSeatPrice(lowerPrice);
+				match.setBookable(matchDate);
 
 				matches.add(match);
 			}

@@ -32,11 +32,20 @@
 			Registration</a>
 		<%
 		} else {
-		%>
-		<a href="#" class="btn btn-secondary">Book Tickes</a>
+		%><br /> <br />
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="alert alert-success">
+					<strong>Welcome!</strong> Click here to <a href="matches.jsp"
+						class="alert-link">Book Your Tickets</a>.
+				</div>
+			</div>
+		</div>
+
 		<%
 		}
 		%>
 	</main>
+
 </body>
 </html>

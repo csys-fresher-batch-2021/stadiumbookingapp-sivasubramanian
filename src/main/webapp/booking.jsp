@@ -31,7 +31,7 @@
 			<label for="matchDate">Match Date</label><br /> <input type="date"
 				name="matchDate" value="<%=request.getParameter("date")%>"><br />
 			<br /> <label for="type">Seat Type</label><br /> <select id="type"
-				name="type" onchange="calculateTotal()">
+				name="type" onchange="calculateTotal()" autofocus>
 				<option disabled selected>--select seat type--</option>
 				<option value="upper">Upper</option>
 				<option value="lower">Lower</option>
