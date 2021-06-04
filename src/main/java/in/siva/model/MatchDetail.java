@@ -115,6 +115,6 @@ public class MatchDetail {
 	}
 
 	public void setBookable(String matchDate) {
-		this.bookable = LocalDate.parse(matchDate).isAfter(LocalDate.now());;
+		this.bookable = LocalDate.parse(matchDate).isAfter(LocalDate.now());
 	}
 }
