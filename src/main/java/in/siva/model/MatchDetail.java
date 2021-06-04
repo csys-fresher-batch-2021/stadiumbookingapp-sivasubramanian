@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class MatchDetail {
 
-	public MatchDetail() {
+	private MatchDetail() {
 		super();
 	}
 
