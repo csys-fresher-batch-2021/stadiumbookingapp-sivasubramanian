@@ -12,6 +12,8 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+		<br />
+		<h2>Matches</h2>
 		<%
 		List<MatchDetail> matchList = MatchManager.getNextMatches();
 		

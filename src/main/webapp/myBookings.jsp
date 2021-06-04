@@ -15,6 +15,9 @@
 	%>
 
 	<main class="container-fluid">
+		<br />
+		<h3>My Bookings</h3>
+		<br />
 		<table class="table table-bordered">
 			<caption>Matches</caption>
 
@@ -48,7 +51,7 @@ function getMyBookings(){
 			details +="<tr><td>"+(++i)+"</td><td>"+booking.stadiumName +"</td><td>"+booking.matchDate+" </td><td>"+booking.team1+
 			"</td><td>"+booking.team2 +"</td><td>"+booking.seatType+"</td><td>"+booking.noOfTickets +"</td><td>"+booking.bookingDate+
 			"</td><td>Rs."+booking.totalAmount+"</td>";
-			if(booking.status.toLowerCase()=='booked'){
+			if(booking.cancellable && booking.status.toLowerCase()=='booked'){
 				let params = "bookingId="+booking.bookingId+"&tickets="+ booking.noOfTickets+"&matchId="+booking.matchId;
 			details+="<td><span class='badge bg-success'>"+booking.status.toUpperCase()+"</span></td>"+
 			"<td><a href='CancellBookingServlet?" + params +"' class='btn btn-danger'  >"+

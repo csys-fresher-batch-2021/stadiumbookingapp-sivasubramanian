@@ -94,7 +94,8 @@ public class BookingDaoImpl {
 				myBooking.setStatus(status);
 				myBooking.setBookingId(bookingId);
 				myBooking.setMatchId(matchId);
-
+				myBooking.setCancellable(matchDate);
+				
 				myBookingList.add(myBooking);
 			}
 		} catch (SQLException e) {
