@@ -43,7 +43,7 @@ public class BookingDaoImpl {
 			pst.executeUpdate();
 
 		} catch (Exception e) {
-			throw new DbException("Unable to register");
+			throw new DbException("Unable to Book");
 		} finally {
 			ConnectionUtil.close(connection, pst);
 		}

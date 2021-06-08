@@ -26,7 +26,8 @@
 				pattern="(?=.*\d)(?=.*[a-z])(?=.*[@#$%^&+=])(?=.*[A-Z]).{8,}"
 				title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 				required> <br /> <br />
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">Login</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
 		</form>
 		<br /> <a href="register.jsp" class="btn btn-secondary">New
 			Registration</a>

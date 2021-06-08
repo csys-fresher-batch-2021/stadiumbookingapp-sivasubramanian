@@ -80,7 +80,7 @@ public class MatchDaoImpl {
 		ResultSet result = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select available_seats,booked_seats from match_details where stadium_name=? and match_date=?";
+			String sql = "select available_seats,booked_seats,(available_seats*100/total_seats) from match_details where stadium_name=? and match_date=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, stadiumName);
 			pst.setDate(2, java.sql.Date.valueOf(matchDate));
@@ -88,11 +88,18 @@ public class MatchDaoImpl {
 			if (result.next()) {
 				int availableSeats = result.getInt(1);
 				int bookedSeats = result.getInt(2);
-				Seats seat = new Seats(availableSeats, bookedSeats);
+				float availablePercent=result.getFloat(3);
+				Seats seat=new Seats();
+				
+				seat.setAvailableSeats(availableSeats);
+				seat.setBookedSeats(bookedSeats);
+				seat.setAvailablePercentage(availablePercent);
+				seat.setBookedPercentage(availablePercent);
 				seats.add(seat);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DbException("Unable to get matches");
 		} finally {
 			ConnectionUtil.close(connection, pst, result);
 		}

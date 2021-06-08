@@ -22,11 +22,11 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 			<form class="form-inline">
 				<input type="date" class="form-control" name="date"
 					value="<%=request.getParameter("date")%>"
-					min="<%=LocalDate.now()%>" required autofocus>&nbsp; <select
-					name="stadiumName" required>
+					min="<%=LocalDate.now()%>" required autofocus>&nbsp;&nbsp;
+				<select name="stadiumName" required>
 					<option disabled selected>-------------------- select
 						stadium --------------------</option>
-					<option>Eden Gardens,Kolkata</option>
+					<option value="Eden Gardens,Kolkata">Eden Gardens,Kolkata</option>
 					<option>M. A. Chidambaram Stadium,Chennai</option>
 					<option>Wankhede Stadium,Mumbai</option>
 					<option>M. Chinnaswamy Stadium,Bangalore</option>
@@ -38,11 +38,11 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 		</nav>
 		<h3>Available Seats</h3>
 		<table class="table table-bordered">
-			<caption>Matches</caption>
+			<caption>Availability</caption>
 			<thead>
 				<tr>
-					<th scope="col">Available Seats</th>
-					<th scope="col">Booked Seats</th>
+					<th scope="col" class="table-success">Available Seats</th>
+					<th scope="col" class="table-danger">Booked Seats</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,11 +50,16 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 				if (request.getParameter("date") != null && request.getParameter("stadiumName") != null) {
 					List<Seats> seatList = MatchManager.getAvailableseats(request.getParameter("stadiumName"),
 					request.getParameter("date"));
+					if(seatList.isEmpty()){%>
+				<tr class="table-warning">
+					<td colspan="2"><span>No matches</span></td>
+				</tr>
+				<%}
 					for (Seats detail : seatList) {
 				%>
-				<tr>
-					<td class="table-success"><%=detail.getAvailableSeats()%></td>
-					<td class="table-danger"><%=detail.getBookedSeats()%></td>
+				<tr class="table-dark">
+					<td><span class="badge badge-success"><%=detail.getAvailableSeats()%></span></td>
+					<td><span class="badge badge-danger"><%=detail.getBookedSeats()%></span></td>
 				</tr>
 				<%
 				}
@@ -63,8 +68,28 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 
 			</tbody>
 		</table>
-
 		<%
+				if (request.getParameter("date") != null && request.getParameter("stadiumName") != null) {
+					List<Seats> seatList = MatchManager.getAvailableseats(request.getParameter("stadiumName"),
+					request.getParameter("date"));
+					for (Seats detail : seatList) {
+				%>
+		<div class="progress">
+			<div class="progress-bar bg-danger" role="progressbar"
+				style="width: <%=detail.getBookedPercentage() %>%"
+				aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+				Booked
+				<%=detail.getBookedPercentage() %>%
+			</div>
+
+			<div class="progress-bar bg-success" role="progressbar"
+				style="width:<%=detail.getAvailablePercentage()%>%">
+				Available
+				<%=detail.getAvailablePercentage()%>%
+			</div>
+
+		</div>
+		<%}}
 		if (loggedInUsername != null) {
 		%>
 		<a href="matches.jsp">List Matches</a>

@@ -3,6 +3,8 @@ package in.siva.model;
 public class Level {
 	
 	String matchDate;
+	float availablePercentage;
+	float bookedPercentage;
 	public String getMatchDate() {
 		return matchDate;
 	}
@@ -21,8 +23,7 @@ public class Level {
 	public void setBookedPercentage(float bookedPercentage) {
 		this.bookedPercentage = bookedPercentage;
 	}
-	float availablePercentage;
-	float bookedPercentage;
+	
 		
 	
 

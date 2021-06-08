@@ -17,18 +17,21 @@
 		}
 		%>
 		<form action="RegisterServlet" method="post">
-			<label for="username">User Name</label> <input type="text"
+			<label for="username">User Name</label> <br /> <input type="text"
 				name="username" placeholder="Enter user name" required autofocus />
-			<br /> <label for="password">Password</label> <input type="password"
+			<br /> <br />
+			<label for="password">Password</label><br /> <input type="password"
 				name="password" placeholder="Enter password"
 				pattern="(?=.*\d)(?=.*[a-z])(?=.*[@#$%^&+=])(?=.*[A-Z]).{8,}"
 				title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-				required /> <br /> <label for="mobileNumber">Mobile Number</label>
-			<input type="tel" name="mobileNumber"
-				placeholder="Enter mobile number" pattern="[6789][0-9]{9}"
+				required /> <br /> <br />
+			<label for="mobileNumber">Mobile Number</label><br /> <input
+				type="tel" name="mobileNumber" placeholder="Enter mobile number"
+				pattern="[6789][0-9]{9}"
 				title="Phone number start with 6-9 and remaing 9 digit with 0-9"
 				required /><br />
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<br />
+			<button type="submit" class="btn btn-primary">Register</button>
 			<button type="reset" class="btn btn-danger">Reset</button>
 		</form>
 	</main>

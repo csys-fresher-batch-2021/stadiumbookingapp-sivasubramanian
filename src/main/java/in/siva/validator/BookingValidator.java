@@ -19,9 +19,15 @@ public class BookingValidator {
 		try {
 			int availableSeats = matchDao.findAvailableSeats(book.getMatchDate());
 			int totalAmount = book.getTotalAmount();
-			if (!InputValidator.isValidNumber(noOfSeats) || !InputValidator.isValidNumber(totalAmount)
-					|| noOfSeats > availableSeats) {
+			String seatType=book.getSeatType();
+			if(!InputValidator.isValidString(seatType)) {
+				throw new ValidationException("Choose seat type");
+			}
+			if (!InputValidator.isValidNumber(noOfSeats) || !InputValidator.isValidNumber(totalAmount)) {
 				throw new ValidationException("Invalid input");
+			}
+			if( noOfSeats > availableSeats) {
+				throw new ValidationException("Only "+availableSeats+" seats are available");
 			}
 		} catch (DbException e) {
 			e.printStackTrace();

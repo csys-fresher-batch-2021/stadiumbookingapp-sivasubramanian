@@ -38,8 +38,7 @@ public class BookingManager {
 			bookingDao.save(bookSeat);
 			matchdao.updateBook(bookSeat);
 		} catch (Exception e) {
-			throw new ServiceException("Invalid credentials");
-		}
+			throw new ServiceException(e.getMessage());		}
 	}
 
 	/**

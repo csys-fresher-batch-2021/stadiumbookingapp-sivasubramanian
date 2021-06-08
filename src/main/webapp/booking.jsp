@@ -29,9 +29,9 @@
 		%>
 		<form action="BookingServlet?matchId=<%=matchId%>" method="post">
 			<label for="matchDate">Match Date</label><br /> <input type="date"
-				name="matchDate" value="<%=request.getParameter("date")%>"><br />
+				name="matchDate" value="<%=request.getParameter("date")%>" readonly><br />
 			<br /> <label for="type">Seat Type</label><br /> <select id="type"
-				name="type" onchange="calculateTotal()" autofocus>
+				name="type" required onchange="calculateTotal()" autofocus>
 				<option disabled selected>--select seat type--</option>
 				<option value="upper">Upper</option>
 				<option value="lower">Lower</option>
@@ -56,8 +56,11 @@
 			if (type == 'upper' && numberOfSeats > 0) {
 				var price = upperPrice * numberOfSeats;
 			}
-			if (type == 'lower' && numberOfSeats > 0) {
+			else if (type == 'lower' && numberOfSeats > 0) {
 				var price = lowerPrice * numberOfSeats;
+			}
+			else{
+				var price=0;
 			}
 			document.querySelector("#total").value = price;
 		}

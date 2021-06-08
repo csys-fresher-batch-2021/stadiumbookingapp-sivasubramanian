@@ -4,15 +4,27 @@ public class Seats {
 
 	private int availableSeats;
 	private int bookedSeats;
+	private float availablePercentage;
+	public float getAvailablePercentage() {
+		return availablePercentage;
+	}
+
+	public float getBookedPercentage() {
+		return bookedPercentage;
+	}
+
+	public void setAvailablePercentage(float availablePercentage) {
+		this.availablePercentage = availablePercentage;
+	}
+
+	public void setBookedPercentage(float availablePercentage) {
+		this.bookedPercentage =100- availablePercentage;
+	}
+
+	private float bookedPercentage;
 
 	public int getAvailableSeats() {
 		return availableSeats;
-	}
-
-	public Seats(int availableSeats, int bookedSeats) {
-		super();
-		this.availableSeats = availableSeats;
-		this.bookedSeats = bookedSeats;
 	}
 
 	public int getBookedSeats() {

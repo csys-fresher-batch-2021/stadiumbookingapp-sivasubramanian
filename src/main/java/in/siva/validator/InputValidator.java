@@ -18,7 +18,7 @@ public class InputValidator {
 
 	public static boolean isValidNumber(int input) {
 		boolean valid = true;
-		if (input < 0) {
+		if (input <= 0) {
 			valid = false;
 		}
 		return valid;
