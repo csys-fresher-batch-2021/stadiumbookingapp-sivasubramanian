@@ -3,6 +3,7 @@ package in.siva.servlet;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,9 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import in.siva.model.MatchDetail;
 import in.siva.service.MatchManager;
+import in.siva.util.LocalDateAdapter;
 
 /**
  * Servlet implementation class DisplayMatchServlet
@@ -38,7 +41,7 @@ public class DisplayMatchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			List<MatchDetail> matchList=MatchManager.getMatches();
-			Gson gson = new Gson();
+			Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
 			String json = gson.toJson(matchList);
 			PrintWriter out = response.getWriter();
 			out.print(json);

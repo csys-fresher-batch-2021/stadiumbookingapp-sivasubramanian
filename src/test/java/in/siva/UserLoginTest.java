@@ -14,7 +14,7 @@ public class UserLoginTest {
 	@Test
 	public void testWithRegisteredData() {
 		try {
-			int userId = UserManager.login("siva", "Siva@123456");
+			int userId = UserManager.login("siva","Siva@123");
 			assertEquals(1,userId);
 		} catch (Exception e) {
 			e.printStackTrace();

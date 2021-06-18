@@ -1,9 +1,21 @@
 package in.siva.dto;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class MatchDetailsDTO {
 
 	private String stadiumName;
-	private String matchDate;
+	private LocalDate matchDate;
+	private LocalTime matchTime;
+	public LocalTime getMatchTime() {
+		return matchTime;
+	}
+
+	public void setMatchTime(LocalTime matchTime) {
+		this.matchTime = matchTime;
+	}
+
 	private String team1;
 	private String team2;
 	private String image;
@@ -24,7 +36,7 @@ public class MatchDetailsDTO {
 		return stadiumName;
 	}
 
-	public String getMatchDate() {
+	public LocalDate getMatchDate() {
 		return matchDate;
 	}
 
@@ -56,7 +68,7 @@ public class MatchDetailsDTO {
 		this.stadiumName = stadiumName;
 	}
 
-	public void setMatchDate(String matchDate) {
+	public void setMatchDate(LocalDate matchDate) {
 		this.matchDate = matchDate;
 	}
 

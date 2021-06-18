@@ -7,12 +7,12 @@ public class MyBookings {
 	private int bookingId;
 	private int matchId;
 	private String stadiumName;
-	private String matchDate;
-	private String team1;
-	private String team2;
+	private LocalDate matchDate;
+	private String teamOne;
+	private String teamTwo;
 	private String seatType;
 	private int noOfTickets;
-	private String bookingDate;
+	private LocalDate bookingDate;
 	private int totalAmount;
 	private String status;
 	private boolean cancellable; // derivable column
@@ -37,8 +37,8 @@ public class MyBookings {
 		return cancellable;
 	}
 
-	public void setCancellable(String matchDate) {
-		this.cancellable =  LocalDate.parse(matchDate).isAfter(LocalDate.now());
+	public void setCancellable(LocalDate matchDate) {
+		this.cancellable = matchDate.isAfter(LocalDate.now());
 	}
 
 	public String getStatus() {
@@ -53,16 +53,16 @@ public class MyBookings {
 		return stadiumName;
 	}
 
-	public String getMatchDate() {
+	public LocalDate getMatchDate() {
 		return matchDate;
 	}
 
-	public String getTeam1() {
-		return team1;
+	public String getTeamOne() {
+		return teamOne;
 	}
 
-	public String getTeam2() {
-		return team2;
+	public String getTeamTwo() {
+		return teamTwo;
 	}
 
 	public String getSeatType() {
@@ -73,7 +73,7 @@ public class MyBookings {
 		return noOfTickets;
 	}
 
-	public String getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
@@ -85,16 +85,16 @@ public class MyBookings {
 		this.stadiumName = stadiumName;
 	}
 
-	public void setMatchDate(String matchDate) {
+	public void setMatchDate(LocalDate matchDate) {
 		this.matchDate = matchDate;
 	}
 
-	public void setTeam1(String team1) {
-		this.team1 = team1;
+	public void setTeamOne(String team1) {
+		this.teamOne = team1;
 	}
 
-	public void setTeam2(String team2) {
-		this.team2 = team2;
+	public void setTeamTwo(String team2) {
+		this.teamTwo = team2;
 	}
 
 	public void setSeatType(String seatType) {
@@ -105,7 +105,7 @@ public class MyBookings {
 		this.noOfTickets = noOfTickets;
 	}
 
-	public void setBookingDate(String bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

@@ -1,19 +1,24 @@
-package in.siva.dao;
+package in.siva.dao.impl;
 
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import in.siva.dao.AdminDAO;
 import in.siva.exception.DbException;
 import in.siva.model.AllBookings;
 import in.siva.model.Level;
 import in.siva.model.MatchDetail;
 import in.siva.util.ConnectionUtil;
 
-public class AdminDaoImpl {
+public class AdminDaoImpl implements AdminDAO {
 
 	public AdminDaoImpl() {
 		super();
@@ -27,25 +32,30 @@ public class AdminDaoImpl {
 	 * @throws DbException
 	 * @throws SQLException
 	 */
+	@Override
 	public void save(MatchDetail dao) throws DbException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String insertQuery = "insert into match_details (stadium_name,match_date,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) values (?,?,?,?,?,?,?,?,?)";
+			String insertQuery = "insert into match_details (stadium_name,match_date,match_time,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) values (?,?,?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(insertQuery);
 			pst.setString(1, dao.getStadiumName());
-			pst.setDate(2, java.sql.Date.valueOf(dao.getMatchDate()));
-			pst.setString(3, dao.getTeam1());
-			pst.setString(4, dao.getTeam2());
-			pst.setInt(5, dao.getTotalSeats());
-			pst.setInt(6, dao.getAvailableSeats());
-			pst.setInt(7, dao.getUpperSeatPrice());
-			pst.setInt(8, dao.getLowerSeatPrice());
-			pst.setString(9, dao.getImage());
+			Date showDate = Date.valueOf(dao.getMatchDate());
+			pst.setDate(2, showDate);
+			Time matchTime=Time.valueOf(dao.getMatchTime());
+			pst.setTime(3,matchTime);
+			pst.setString(4, dao.getTeamOne());
+			pst.setString(5, dao.getTeamTwo());
+			pst.setInt(6, dao.getTotalSeats());
+			pst.setInt(7, dao.getAvailableSeats());
+			pst.setInt(8, dao.getUpperSeatPrice());
+			pst.setInt(9, dao.getLowerSeatPrice());
+			pst.setString(10, dao.getImage());
 
 			pst.executeUpdate();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new DbException("Unable to register");
 		} finally {
 			ConnectionUtil.close(connection, pst);
@@ -58,6 +68,7 @@ public class AdminDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public List<AllBookings> findAllBookings() throws DbException {
 		final List<AllBookings> allBookingList = new ArrayList<>();
 		Connection connection = null;
@@ -65,7 +76,7 @@ public class AdminDaoImpl {
 		ResultSet result = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select u.user_name, m.id,m.stadium_name,m.match_date,m.team1,m.team2,"
+			String sql = "select u.user_name, m.id,m.stadium_name,m.match_date,m.match_time,m.team1,m.team2,"
 					+ "b.seat_type, b.no_of_seats,"
 					+ "b.status,b.id from users u,match_details m,booking_details b where m.id=b.match_id and u.id=b.user_id";
 			pst = connection.prepareStatement(sql);
@@ -74,13 +85,14 @@ public class AdminDaoImpl {
 				String username = result.getString(1);
 				int matchId = result.getInt(2);
 				String stadiumName = result.getString(3);
-				String matchDate = result.getDate(4).toString();
-				String team1 = result.getString(5);
-				String team2 = result.getString(6);
-				String seatType = result.getString(7);
-				int noOfTickets = result.getInt(8);
-				String status = result.getString(9);
-				int bookingId = result.getInt(10);
+				LocalDate matchDate = result.getDate(4).toLocalDate();
+				LocalTime matchTime=result.getTime(5).toLocalTime();
+				String team1 = result.getString(6);
+				String team2 = result.getString(7);
+				String seatType = result.getString(8);
+				int noOfTickets = result.getInt(9);
+				String status = result.getString(10);
+				int bookingId = result.getInt(11);
 				AllBookings allBooking = new AllBookings();
 
 				allBooking.setBookingId(bookingId);
@@ -90,9 +102,10 @@ public class AdminDaoImpl {
 				allBooking.setNoOfTickets(noOfTickets);
 				allBooking.setSeatType(seatType);
 				allBooking.setStatus(status);
-				allBooking.setTeam1(team1);
-				allBooking.setTeam2(team2);
+				allBooking.setTeamOne(team1);
+				allBooking.setTeamTwo(team2);
 				allBooking.setMatchId(matchId);
+				allBooking.setMatchTime(matchTime);
 
 				allBookingList.add(allBooking);
 			}
@@ -113,6 +126,7 @@ public class AdminDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public List<Level> findPercentage(String name) throws DbException {
 		final List<Level> percentage = new ArrayList<>();
 		Connection connection = null;

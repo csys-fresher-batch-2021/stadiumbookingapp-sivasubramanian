@@ -32,12 +32,31 @@
 				<option>Rajiv Gandhi International Cricket Stadium,Dehradun</option>
 			</select> <br /> <br /> <label for="dateTime">Set Date and time</label> <br />
 			<input type="date" id="datetime" name="dateTime"
-				min="<%=LocalDate.now()%>" required> <br /> <br /> <input
-				type="text" name="team1" placeholder="Enter team1"
-				title="eg.csk,mi,srh.." required> <br /> <br /> <input
-				type="text" name="team2" title="eg.csk,mi,srh.."
-				placeholder="Enter team2" required> <br /> <br /> <input
-				type="number" min="100" name="totalSeats"
+				min="<%=LocalDate.now()%>" required> <input type="time"
+				id="time" name="time" required> <br /> <br /> <label
+				for="team1">Team 1</label> <br /> <select class="selectpicker"
+				data-live-search="true" name="team1" required>
+				<option disabled selected>----Choose team1----</option>
+				<option>CSK</option>
+				<option>MI</option>
+				<option>SRH</option>
+				<option>KKR</option>
+				<option>RCB</option>
+				<option>RR</option>
+				<option>PK</option>
+				<option>DC</option>
+			</select><br /> <br /> <label for="team2">Team 2</label> <br /> <select
+				class="selectpicker" data-live-search="true" name="team2" required>
+				<option disabled selected>----Choose team2----</option>
+				<option>CSK</option>
+				<option>MI</option>
+				<option>SRH</option>
+				<option>KKR</option>
+				<option>RCB</option>
+				<option>RR</option>
+				<option>PK</option>
+				<option>DC</option>
+			</select> <br /> <br /> <input type="number" min="100" name="totalSeats"
 				placeholder="Enter total seats" id="totalSeats"
 				onchange="setAvailableSeats()" required> <br /> <br /> <input
 				type="number" name="availableSeats" id="availableSeats"

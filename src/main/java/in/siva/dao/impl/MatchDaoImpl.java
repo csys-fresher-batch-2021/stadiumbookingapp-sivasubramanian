@@ -1,19 +1,23 @@
-package in.siva.dao;
+package in.siva.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.siva.dao.MatchDAO;
 import in.siva.exception.DbException;
 import in.siva.model.Booking;
 import in.siva.model.MatchDetail;
 import in.siva.model.Seats;
 import in.siva.util.ConnectionUtil;
 
-public class MatchDaoImpl {
+public class MatchDaoImpl implements MatchDAO {
 
 	public MatchDaoImpl() {
 		super();
@@ -25,6 +29,7 @@ public class MatchDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public List<MatchDetail> findAllByOrderByDateAsc() throws DbException {
 		final List<MatchDetail> matches = new ArrayList<>();
 		Connection connection = null;
@@ -37,9 +42,9 @@ public class MatchDaoImpl {
 			result = pst.executeQuery();
 			while (result.next()) {
 				String stadiumName = result.getString(1);
-				String matchDate = result.getDate(2).toString();
-				String team1 = result.getString(3);
-				String team2 = result.getString(4);
+				LocalDate matchDate = result.getDate(2).toLocalDate();
+				String teamOne = result.getString(3);
+				String teamTwo = result.getString(4);
 				int totalSeats = result.getInt(5);
 				int upperPrice = result.getInt(6);
 				int lowerPrice = result.getInt(7);
@@ -47,8 +52,8 @@ public class MatchDaoImpl {
 
 				match.setStadiumName(stadiumName);
 				match.setMatchDate(matchDate);
-				match.setTeam1(team1);
-				match.setTeam2(team2);
+				match.setTeamOne(teamOne);
+				match.setTeamTwo(teamTwo);
 				match.setTotalSeats(totalSeats);
 				match.setUpperSeatPrice(upperPrice);
 				match.setLowerSeatPrice(lowerPrice);
@@ -73,6 +78,7 @@ public class MatchDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public List<Seats> findByMatchDate(String stadiumName, String matchDate) throws DbException {
 		final List<Seats> seats = new ArrayList<>();
 		Connection connection = null;
@@ -113,6 +119,7 @@ public class MatchDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public List<MatchDetail> findByAfterCurrentDate() throws DbException {
 		final List<MatchDetail> matches = new ArrayList<>();
 		Connection connection = null;
@@ -120,28 +127,30 @@ public class MatchDaoImpl {
 		ResultSet result = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select id,stadium_name,match_date,team1,team2,upper_seat_price,lower_seat_price,image from match_details where match_date >= CURRENT_DATE order by match_date asc";
+			String sql = "select id,stadium_name,match_date,match_time,team1,team2,upper_seat_price,lower_seat_price,image from match_details where match_date >= CURRENT_DATE order by match_date asc";
 			pst = connection.prepareStatement(sql);
 			result = pst.executeQuery();
 			while (result.next()) {
 				int matchId = result.getInt(1);
 				String stadiumName = result.getString(2);
-				String matchDate = result.getDate(3).toString();
-				String team1 = result.getString(4);
-				String team2 = result.getString(5);
-				int upperPrice = result.getInt(6);
-				int lowerPrice = result.getInt(7);
-				String image = result.getString(8);
+				LocalDate matchDate = result.getDate(3).toLocalDate();
+				Time matchTime=result.getTime(4);
+				String teamOne = result.getString(5);
+				String teamTwo = result.getString(6);
+				int upperPrice = result.getInt(7);
+				int lowerPrice = result.getInt(8);
+				String image = result.getString(9);
 				MatchDetail match = new MatchDetail();
 
 				match.setMatchId(matchId);
 				match.setStadiumName(stadiumName);
 				match.setMatchDate(matchDate);
-				match.setTeam1(team1);
-				match.setTeam2(team2);
+				match.setTeamOne(teamOne);
+				match.setTeamTwo(teamTwo);
 				match.setUpperSeatPrice(upperPrice);
 				match.setLowerSeatPrice(lowerPrice);
 				match.setImage(image);
+				match.setMatchTime(matchTime.toLocalTime());
 
 				matches.add(match);
 			}
@@ -160,6 +169,7 @@ public class MatchDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public int findAvailableSeats(String matchDate) throws DbException {
 
 		Connection connection = null;
@@ -190,6 +200,7 @@ public class MatchDaoImpl {
 	 * @throws DbException
 	 * @throws SQLException
 	 */
+	@Override
 	public void updateBook(Booking dao) throws DbException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -217,6 +228,7 @@ public class MatchDaoImpl {
 	 * @throws DbException
 	 * @throws SQLException
 	 */
+	@Override
 	public void updateCancell(int matchId, int noOfTickets) throws DbException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;

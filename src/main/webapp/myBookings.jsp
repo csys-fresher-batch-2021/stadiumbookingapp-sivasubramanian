@@ -18,7 +18,7 @@
 		<br />
 		<h3>My Bookings</h3>
 		<br />
-		<table class="table table-bordered">
+		<table class="table table-bordered table-hover table-dark">
 			<caption>Matches</caption>
 
 			<thead>
@@ -39,7 +39,7 @@
 			<tbody id="bookings">
 			</tbody>
 		</table>
-
+		<a href="matches.jsp">Book Again</a>
 		<script type="text/javascript">
 function getMyBookings(){
 	let url = "DisplayMyBookingsServlet?userId=<%=loggedInUserId%>";
@@ -48,8 +48,11 @@ function getMyBookings(){
 		let details = "";
 		let i=0;
 		for(let booking of myBookings){
-			details +="<tr><td>"+(++i)+"</td><td>"+booking.stadiumName +"</td><td>"+booking.matchDate+" </td><td>"+booking.team1+
-			"</td><td>"+booking.team2 +"</td><td>"+booking.seatType+"</td><td>"+booking.noOfTickets +"</td><td>"+booking.bookingDate+
+			console.log(booking);
+			//var matchDate = moment(booking.matchDate).format('DD-MM-YYYY');
+			//var bookingDate = moment(booking.bookingDate).format('DD-MM-YYYY');
+			details +="<tr><td>"+(++i)+"</td><td>"+booking.stadiumName +"</td><td>"+booking.matchDate+" </td><td>"+booking.teamOne+
+			"</td><td>"+booking.teamTwo +"</td><td>"+booking.seatType+"</td><td>"+booking.noOfTickets +"</td><td>"+booking.bookingDate+
 			"</td><td>Rs."+booking.totalAmount+"</td>";
 			if(booking.cancellable && booking.status.toLowerCase()=='booked'){
 				let params = "bookingId="+booking.bookingId+"&tickets="+ booking.noOfTickets+"&matchId="+booking.matchId;
@@ -57,7 +60,7 @@ function getMyBookings(){
 			"<td><a href='CancellBookingServlet?" + params +"' class='btn btn-danger'  >"+
 					"Cancel"+"</a></td>";
 			}
-		else if(booking.status.toLowerCase()=='cancelled'){
+		else if(!booking.cancellable ||booking.status.toLowerCase()=='cancelled'){
 			details+="<td><span class='badge bg-danger'>"+booking.status.toUpperCase()+"</span></td>"+
 			"<td><button class='btn btn-danger' disabled>"+
 					"Cancel"+"</button></td>";

@@ -1,12 +1,12 @@
-package in.siva.converter;
+package in.siva.convertor;
 
 import in.siva.dto.MatchDetailsDTO;
 
 import in.siva.model.MatchDetail;
 
-public class MatchDetailConverter {
+public class MatchDetailConvertor {
 
-	private MatchDetailConverter() {
+	private MatchDetailConvertor() {
 
 	}
 
@@ -14,13 +14,14 @@ public class MatchDetailConverter {
 		MatchDetail matchDetail = new MatchDetail();
 		matchDetail.setStadiumName(dto.getStadiumName());
 		matchDetail.setMatchDate(dto.getMatchDate());
-		matchDetail.setTeam1(dto.getTeam1());
-		matchDetail.setTeam2(dto.getTeam2());
+		matchDetail.setTeamOne(dto.getTeam1());
+		matchDetail.setTeamTwo(dto.getTeam2());
 		matchDetail.setAvailableSeats(dto.getAvailableSeats());
 		matchDetail.setTotalSeats(dto.getTotalSeats());
 		matchDetail.setUpperSeatPrice(dto.getUpperSeatPrice());
 		matchDetail.setLowerSeatPrice(dto.getLowerSeatPrice());
 		matchDetail.setImage(dto.getImage());
+		matchDetail.setMatchTime(dto.getMatchTime());
 		return matchDetail;
 	}
 }

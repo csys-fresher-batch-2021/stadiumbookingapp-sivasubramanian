@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -23,15 +24,16 @@
 			<div class="row">
 				<%
 		for (MatchDetail detail : matchList) {
+			String matchDate =detail.getMatchDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		    String matchTime =detail.getMatchTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 		%>
-
 				<div class="col-lg-6 mb-4">
 					<div class="card" style="width: 20rem">
 						<img class="card-img-top" src="images/<%=detail.getImage()%>"
 							alt="Card image cap">
 						<div class="card-block">
-							<h4 class="card-title"><%=detail.getTeam1().toUpperCase()%>-<%=detail.getTeam2().toUpperCase()%></h4>
-							<p class="card-text"><%=detail.getMatchDate()%><br /> <br /><%=detail.getStadiumName()%>
+							<h4 class="card-title"><%=detail.getTeamOne().toUpperCase()%>-<%=detail.getTeamTwo().toUpperCase()%></h4>
+							<p class="card-text"><%=matchDate%><br /><%=matchTime%><br /><%=detail.getStadiumName()%>
 							</p>
 							<a
 								href="booking.jsp?id=<%=detail.getMatchId()%>&date=<%=detail.getMatchDate()%>&up=<%=detail.getUpperSeatPrice()%>

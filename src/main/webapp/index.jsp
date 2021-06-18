@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -14,7 +16,7 @@
 		<h3>Available Matches</h3>
 		<input class="form-control" id="myInput" type="text"
 			placeholder="Search.."> <br>
-		<table class="table table-bordered">
+		<table class="table table-bordered table-striped ">
 			<caption>Matches</caption>
 			<thead>
 				<tr>
@@ -48,8 +50,8 @@ function getAllMatches(){
 		let details = "";
 		let i=0;
 		for(let match of matches){
-			details +="<tr><td>"+(++i)+"</td><td>"+match.stadiumName +"</td><td>"+match.matchDate+" </td><td>"+match.team1+
-			"</td><td>"+match.team2 +"</td><td>"+match.totalSeats+"</td><td>Rs."+match.upperSeatPrice +"</td><td>Rs."+match.lowerSeatPrice 
+			details +="<tr><td>"+(++i)+"</td><td>"+match.stadiumName +"</td><td>"+match.matchDate+" </td><td>"+match.teamOne+
+			"</td><td>"+match.teamTwo +"</td><td>"+match.totalSeats+"</td><td>Rs."+match.upperSeatPrice +"</td><td>Rs."+match.lowerSeatPrice 
 			+"</td>";
 			console.log(match);
 			if(match.bookable){

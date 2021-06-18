@@ -1,6 +1,7 @@
 package in.siva.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class MatchDetail {
 
@@ -10,9 +11,9 @@ public class MatchDetail {
 
 	private int matchId;
 	private String stadiumName;
-	private String matchDate;
-	private String team1;
-	private String team2;
+	private LocalDate matchDate;
+	private String teamOne;
+	private String teamTwo;
 	private int totalSeats;
 	private int availableSeats;
 	private int bookedSeats;
@@ -20,7 +21,14 @@ public class MatchDetail {
 	private int lowerSeatPrice;
 	private String image;
 	private boolean bookable;
+	private LocalTime matchTime;
+	public LocalTime getMatchTime() {
+		return matchTime;
+	}
 
+	public void setMatchTime(LocalTime matchTime) {
+		this.matchTime = matchTime;
+	}
 
 	public int getMatchId() {
 		return matchId;
@@ -50,16 +58,16 @@ public class MatchDetail {
 		return stadiumName;
 	}
 
-	public String getMatchDate() {
+	public LocalDate getMatchDate() {
 		return matchDate;
 	}
 
-	public String getTeam1() {
-		return team1;
+	public String getTeamOne() {
+		return teamOne;
 	}
 
-	public String getTeam2() {
-		return team2;
+	public String getTeamTwo() {
+		return teamTwo;
 	}
 
 	public int getTotalSeats() {
@@ -82,16 +90,16 @@ public class MatchDetail {
 		this.stadiumName = stadiumName;
 	}
 
-	public void setMatchDate(String matchDate) {
+	public void setMatchDate(LocalDate matchDate) {
 		this.matchDate = matchDate;
 	}
 
-	public void setTeam1(String team1) {
-		this.team1 = team1;
+	public void setTeamOne(String team1) {
+		this.teamOne = team1;
 	}
 
-	public void setTeam2(String team2) {
-		this.team2 = team2;
+	public void setTeamTwo(String team2) {
+		this.teamTwo = team2;
 	}
 
 	public void setTotalSeats(int totalSeats) {
@@ -114,7 +122,7 @@ public class MatchDetail {
 		return bookable;
 	}
 
-	public void setBookable(String matchDate) {
-		this.bookable = LocalDate.parse(matchDate).isAfter(LocalDate.now());
+	public void setBookable(LocalDate matchDate) {
+		this.bookable = matchDate.isAfter(LocalDate.now());
 	}
 }

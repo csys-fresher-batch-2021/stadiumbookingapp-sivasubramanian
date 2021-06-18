@@ -1,19 +1,21 @@
-package in.siva.dao;
+package in.siva.dao.impl;
 
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.siva.dao.BookingDAO;
 import in.siva.exception.DbException;
 import in.siva.model.Booking;
 import in.siva.model.MyBookings;
 import in.siva.util.ConnectionUtil;
 
-public class BookingDaoImpl {
+public class BookingDaoImpl implements BookingDAO {
 
 	public BookingDaoImpl() {
 		super();
@@ -26,6 +28,7 @@ public class BookingDaoImpl {
 	 * @throws DbException
 	 * @throws SQLException
 	 */
+	@Override
 	public void save(Booking dao) throws DbException, SQLException {
 
 		Connection connection = null;
@@ -56,6 +59,7 @@ public class BookingDaoImpl {
 	 * @return
 	 * @throws DbException
 	 */
+	@Override
 	public List<MyBookings> findMyBookings(int userId) throws DbException {
 		final List<MyBookings> myBookingList = new ArrayList<>();
 		Connection connection = null;
@@ -71,12 +75,12 @@ public class BookingDaoImpl {
 			result = pst.executeQuery();
 			while (result.next()) {
 				String stadiumName = result.getString(1);
-				String matchDate = result.getDate(2).toString();
+				LocalDate matchDate = result.getDate(2).toLocalDate();
 				String team1 = result.getString(3);
 				String team2 = result.getString(4);
 				String seatType = result.getString(5);
 				int noOfTickets = result.getInt(6);
-				String bookingDate = result.getDate(7).toString();
+				LocalDate bookingDate = result.getDate(7).toLocalDate();
 				int totalAmount = result.getInt(8);
 				String status = result.getString(9);
 				int bookingId = result.getInt(10);
@@ -85,8 +89,8 @@ public class BookingDaoImpl {
 
 				myBooking.setStadiumName(stadiumName);
 				myBooking.setMatchDate(matchDate);
-				myBooking.setTeam1(team1);
-				myBooking.setTeam2(team2);
+				myBooking.setTeamOne(team1);
+				myBooking.setTeamTwo(team2);
 				myBooking.setSeatType(seatType);
 				myBooking.setNoOfTickets(noOfTickets);
 				myBooking.setBookingDate(bookingDate);
@@ -113,6 +117,7 @@ public class BookingDaoImpl {
 	 * @throws DbException
 	 * @throws SQLException
 	 */
+	@Override
 	public void update(int bookingId) throws DbException, SQLException {
 
 		Connection connection = null;

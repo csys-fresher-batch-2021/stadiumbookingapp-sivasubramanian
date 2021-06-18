@@ -1,10 +1,10 @@
-package in.siva.converter;
+package in.siva.convertor;
 
 import in.siva.dto.BookingDTO;
 import in.siva.model.Booking;
 
-public class BookingConverter {
-	private BookingConverter() {
+public class BookingConvertor {
+	private BookingConvertor() {
 
 	}
 

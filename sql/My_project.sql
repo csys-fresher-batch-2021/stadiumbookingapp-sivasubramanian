@@ -24,6 +24,7 @@ CREATE TABLE match_details
     id serial,
     stadium_name character varying(200) NOT NULL,
     match_date date NOT NULL,
+	match_time time without time zone,
     team1 character varying(20) NOT NULL,
     team2 character varying(20) NOT NULL,
     total_seats integer NOT NULL,
@@ -32,6 +33,7 @@ CREATE TABLE match_details
     upper_seat_price integer NOT NULL,
     lower_seat_price integer NOT NULL,
     image character varying(200) NOT NULL,
+	reason character varying(200),
     PRIMARY KEY (id),
 	CHECK (total_seats>0),
 	CHECK (available_seats>0),
@@ -39,14 +41,14 @@ CREATE TABLE match_details
 	CHECK (lower_seat_price>0)
 );
 /*Insert values in match_details*/
-insert into match_details (stadium_name,match_date,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) 
-values ('M. A. Chidambaram Stadium,Chennai','2021-06-10','csk','mi',1000,1000,1500,3000,'csk-mi.jpg');
+insert into match_details (stadium_name,match_date,match_time,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) 
+values ('M. A. Chidambaram Stadium,Chennai','2021-06-11','19:00','CSK','MI',1000,1000,1500,3000,'csk-mi.jpg');
 
-insert into match_details (stadium_name,match_date,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) 
-values ('Wankhede Stadium,Mumbai','2021-06-11','dc','pk',800,800,2000,4000,'dc-pk.jpg');
+insert into match_details (stadium_name,match_date,match_time,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) 
+values ('Wankhede Stadium,Mumbai','2021-06-12','19:30','DC','PK',800,800,2000,4000,'dc-pk.jpg');
 
-insert into match_details (stadium_name,match_date,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) 
-values ('Eden Gardens,Kolkata','2021-06-12','rcb','srh',1500,1500,2500,3800,'rcb-srh.jpg');
+insert into match_details (stadium_name,match_date,match_time,team1,team2,total_seats,available_seats,upper_seat_price,lower_seat_price,image) 
+values ('Eden Gardens,Kolkata','2021-06-12','19:30','RCB','SRH',1500,1500,2500,3800,'rcb-srh.jpg');
 
 
 

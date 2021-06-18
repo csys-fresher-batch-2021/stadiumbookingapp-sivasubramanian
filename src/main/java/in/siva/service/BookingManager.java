@@ -1,12 +1,15 @@
 package in.siva.service;
 
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import in.siva.converter.BookingConverter;
-import in.siva.dao.BookingDaoImpl;
-import in.siva.dao.MatchDaoImpl;
+import in.siva.convertor.BookingConvertor;
+import in.siva.dao.BookingDAO;
+import in.siva.dao.MatchDAO;
+import in.siva.dao.impl.BookingDaoImpl;
+import in.siva.dao.impl.MatchDaoImpl;
 import in.siva.dto.BookingDTO;
 import in.siva.exception.DbException;
 import in.siva.exception.ServiceException;
@@ -29,12 +32,12 @@ public class BookingManager {
 	 */
 	public static void bookSeat(BookingDTO dto) {
 
-		Booking bookSeat = BookingConverter.toBooking(dto);
+		Booking bookSeat = BookingConvertor.toBooking(dto);
 
 		try {
 			BookingValidator.isValidBooking(bookSeat);
-			BookingDaoImpl bookingDao = new BookingDaoImpl();
-			MatchDaoImpl matchdao = new MatchDaoImpl();
+			BookingDAO bookingDao = new BookingDaoImpl();
+			MatchDAO matchdao = new MatchDaoImpl();
 			bookingDao.save(bookSeat);
 			matchdao.updateBook(bookSeat);
 		} catch (Exception e) {
@@ -49,10 +52,10 @@ public class BookingManager {
 	 */
 	public static List<MyBookings> getMyBookings(int userId) {
 		List<MyBookings> myBookingList = new ArrayList<>();
-		BookingDaoImpl bookingDao = new BookingDaoImpl();
+		BookingDAO bookingDao = new BookingDaoImpl();
 		try {
 			myBookingList = bookingDao.findMyBookings(userId);
-		} catch (DbException e) {
+		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
 		}
 		return myBookingList;
@@ -68,8 +71,8 @@ public class BookingManager {
 	public static void cancellSeat(int matchId, int bookingId, int noOfTickets) {
 
 		BookingValidator.isvalidcancelling(matchId, bookingId, noOfTickets);
-		BookingDaoImpl bookingDao = new BookingDaoImpl();
-		MatchDaoImpl matchdao = new MatchDaoImpl();
+		BookingDAO bookingDao = new BookingDaoImpl();
+		MatchDAO matchdao = new MatchDaoImpl();
 		try {
 			bookingDao.update(bookingId);
 			matchdao.updateCancell(matchId, noOfTickets);

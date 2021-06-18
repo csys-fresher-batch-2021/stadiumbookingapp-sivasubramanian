@@ -15,8 +15,8 @@ public class MatchDetailValidator {
 		int totalseats = matchDetail.getTotalSeats();
 		int upperSeatPrice = matchDetail.getUpperSeatPrice();
 		int lowerSeatprice = matchDetail.getLowerSeatPrice();
-		String team1 = matchDetail.getTeam1();
-		String team2 = matchDetail.getTeam2();
+		String team1 = matchDetail.getTeamOne();
+		String team2 = matchDetail.getTeamTwo();
 		String image = matchDetail.getImage();
 		if (!InputValidator.isValidNumber(lowerSeatprice) || !InputValidator.isValidNumber(upperSeatPrice)
 				|| !InputValidator.isValidNumber(totalseats)

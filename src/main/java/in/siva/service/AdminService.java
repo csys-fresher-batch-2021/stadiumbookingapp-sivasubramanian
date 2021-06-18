@@ -2,10 +2,12 @@ package in.siva.service;
 
 import java.util.List;
 
+
 import javax.sql.rowset.serial.SerialException;
 
-import in.siva.converter.MatchDetailConverter;
-import in.siva.dao.AdminDaoImpl;
+import in.siva.convertor.MatchDetailConvertor;
+import in.siva.dao.AdminDAO;
+import in.siva.dao.impl.AdminDaoImpl;
 import in.siva.dto.MatchDetailsDTO;
 import in.siva.exception.ServiceException;
 import in.siva.model.AllBookings;
@@ -42,10 +44,10 @@ public class AdminService {
 	 */
 	public static void addMatchDetails(MatchDetailsDTO dto) {
 
-		MatchDetail matchDetail = MatchDetailConverter.toMatchDetail(dto);
+		MatchDetail matchDetail = MatchDetailConvertor.toMatchDetail(dto);
 		try {
 			MatchDetailValidator.isValidMatchDetail(matchDetail);
-			AdminDaoImpl adminDao = new AdminDaoImpl();
+			AdminDAO adminDao = new AdminDaoImpl();
 			adminDao.save(matchDetail);
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage());
@@ -61,7 +63,7 @@ public class AdminService {
 	 */
 	public static List<AllBookings> getAllBookings() throws ServiceException {
 
-		AdminDaoImpl allBookings = new AdminDaoImpl();
+		AdminDAO allBookings = new AdminDaoImpl();
 		try {
 			return allBookings.findAllBookings();
 		} catch (Exception e) {
@@ -78,7 +80,7 @@ public class AdminService {
 	 */
 	public static List<Level> getPercentage(String name) {
 
-		AdminDaoImpl percentage = new AdminDaoImpl();
+		AdminDAO percentage = new AdminDaoImpl();
 		try {
 			return percentage.findPercentage(name);
 		} catch (Exception e) {

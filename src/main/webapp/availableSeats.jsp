@@ -39,10 +39,10 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 		<h3>Available Seats</h3>
 		<table class="table table-bordered">
 			<caption>Availability</caption>
-			<thead>
+			<thead class="thead-dark">
 				<tr>
-					<th scope="col" class="table-success">Available Seats</th>
-					<th scope="col" class="table-danger">Booked Seats</th>
+					<th scope="col" class="bg-success">Available Seats</th>
+					<th scope="col" class="bg-danger">Booked Seats</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,7 +51,7 @@ String loggedInUsername = (String) session.getAttribute("LOGGED_IN_USER");
 					List<Seats> seatList = MatchManager.getAvailableseats(request.getParameter("stadiumName"),
 					request.getParameter("date"));
 					if(seatList.isEmpty()){%>
-				<tr class="table-warning">
+				<tr class="bg-warning">
 					<td colspan="2"><span>No matches</span></td>
 				</tr>
 				<%}
